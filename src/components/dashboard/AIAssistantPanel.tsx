@@ -184,7 +184,7 @@ export default function AIAssistantPanel() {
   return (
     <div className="flex h-full flex-col rounded-[14px] border border-border-subtle bg-bg-card overflow-hidden">
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-border-subtle px-5 py-3.5">
+      <div className="flex shrink-0 items-center justify-between border-b border-border-subtle px-5 py-3.5">
         <div className="flex items-center gap-3">
           <AvatarOrb size="sm" active={!listening} listening={listening} />
           <div>
@@ -240,7 +240,7 @@ export default function AIAssistantPanel() {
       </div>
 
       {/* Tabs */}
-      <div className="flex border-b border-border-subtle">
+      <div className="flex shrink-0 border-b border-border-subtle">
         <button
           type="button"
           onClick={() => setTab("chat")}
@@ -271,9 +271,9 @@ export default function AIAssistantPanel() {
 
       {/* Content */}
       {tab === "chat" ? (
-        <div className="flex-1 flex flex-col overflow-hidden">
+        <div className="flex-1 min-h-0 flex flex-col overflow-hidden">
           {hasConversation ? (
-            <div ref={listRef} className="flex-1 overflow-y-auto px-5 py-4 space-y-5">
+            <div ref={listRef} className="flex-1 min-h-0 overflow-y-auto px-5 py-4 space-y-5">
               {messages.map((m) =>
                 m.role === "user" ? (
                   <div key={m.id} className="flex justify-end animate-fade-in-up">
@@ -337,7 +337,8 @@ export default function AIAssistantPanel() {
               <div ref={endRef} />
             </div>
           ) : (
-            <div className="flex-1 flex flex-col items-center justify-center px-5 py-8">
+            <div className="flex-1 min-h-0 overflow-y-auto px-5 py-8">
+              <div className="flex min-h-full flex-col items-center justify-center">
               <AvatarOrb size="xl" active={false} listening={listening} />
               <div className="mt-6 text-center">
                 <h3 className="text-[16px] font-bold text-text-primary flex items-center gap-2 justify-center">
@@ -370,10 +371,11 @@ export default function AIAssistantPanel() {
                 </div>
               )}
             </div>
+            </div>
           )}
 
           {/* Input area */}
-          <div className="border-t border-border-subtle px-4 py-3">
+          <div className="shrink-0 border-t border-border-subtle px-4 py-3">
             <div className="flex items-end gap-2 rounded-[12px] border border-border-subtle bg-bg-elevated/60 p-2 transition-colors focus-within:border-accent-blue/40">
               <button
                 type="button"
@@ -407,7 +409,7 @@ export default function AIAssistantPanel() {
                   }
                 }}
                 placeholder={listening ? `Listening in ${language}…` : "Ask USDX AI anything…"}
-                className="flex-1 bg-transparent px-1 py-2 text-[13px] text-text-primary outline-none placeholder:text-text-muted/60"
+                className="min-w-0 flex-1 bg-transparent px-1 py-2 text-[13px] text-text-primary outline-none placeholder:text-text-muted/60"
                 disabled={isLoading}
               />
 
@@ -416,10 +418,10 @@ export default function AIAssistantPanel() {
                 onClick={handleSend}
                 disabled={!input.trim() || isLoading}
                 className={cn(
-                  "flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px] transition-all",
+                  "flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px] transition-all bg-accent-blue text-white",
                   input.trim() && !isLoading
-                    ? "bg-accent-blue text-white shadow-[0_2px_12px_-2px_rgba(59,130,246,0.5)] hover:bg-accent-blue/90"
-                    : "cursor-not-allowed bg-accent-blue/15 text-accent-blue border border-accent-blue/40"
+                    ? "shadow-[0_2px_12px_-2px_rgba(59,130,246,0.5)] hover:bg-accent-blue/90"
+                    : "cursor-not-allowed opacity-50"
                 )}
                 aria-label="Send"
                 title={input.trim() ? "Send message" : "Type a message to send"}
@@ -436,7 +438,7 @@ export default function AIAssistantPanel() {
         </div>
       ) : (
         /* History tab */
-        <div className="flex-1 overflow-y-auto px-5 py-4">
+        <div className="flex-1 min-h-0 overflow-y-auto px-5 py-4">
           <p className="text-[12px] font-medium text-text-muted mb-3">Recent conversations</p>
           <div className="space-y-2">
             {["How does USDX staking work?", "Calculate my compounding", "What are the ranks?"].map((q) => (
