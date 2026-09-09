@@ -73,7 +73,8 @@ export async function POST(request: NextRequest) {
   const lang = normalizeLang(body.language);
   const voice = process.env.AI_TTS_VOICE ?? VOICE_MAP[lang] ?? "Puck";
   const ttsModel =
-    process.env.AI_TTS_MODEL ?? "gemini-2.5-flash-preview-tts";
+    process.env.AI_TTS_MODEL ?? "gemini-3.1-flash-tts-preview";
+  const languageCode = `${lang.split("-")[0]}-${lang.split("-")[1] ?? "IN"}`;
   const configuredBase = process.env.AI_TTS_BASE_URL ?? process.env.AI_BASE_URL ?? "";
   const apiBase = configuredBase.includes("/openai")
     ? configuredBase.replace(/\/openai\/?$/, "")
@@ -94,6 +95,7 @@ export async function POST(request: NextRequest) {
           generationConfig: {
             responseModalities: ["AUDIO"],
             speechConfig: {
+              languageCode,
               voiceConfig: {
                 prebuiltVoiceConfig: {
                   voiceName: voice,
@@ -130,10 +132,13 @@ export async function POST(request: NextRequest) {
 
     const audioBuffer = Buffer.from(audioBase64, "base64");
 
-    if (mimeType && (mimeType.includes("L16") || mimeType.includes("pcm"))) {
-      const rateMatch = mimeType.match(/rate=(\d+)/);
+    const normalizedMime = (mimeType ?? "").toLowerCase();
+    if (normalizedMime.includes("l16") || normalizedMime.includes("pcm")) {
+      const rateMatch = normalizedMime.match(/rate=(\d+)/);
       const sampleRate = rateMatch ? Number(rateMatch[1]) : 24000;
-      const wav = pcmToWav(audioBuffer, sampleRate, 1, 16);
+      const channelMatch = normalizedMime.match(/(?:channels?|ch)=(\d+)/);
+      const channels = channelMatch ? Number(channelMatch[1]) : 1;
+      const wav = pcmToWav(audioBuffer, sampleRate, channels, 16);
       return new NextResponse(new Uint8Array(wav), {
         status: 200,
         headers: {
