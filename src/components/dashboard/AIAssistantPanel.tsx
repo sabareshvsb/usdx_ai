@@ -419,7 +419,7 @@ export default function AIAssistantPanel() {
                   "flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px] transition-all",
                   input.trim() && !isLoading
                     ? "bg-accent-blue text-white shadow-[0_2px_12px_-2px_rgba(59,130,246,0.5)] hover:bg-accent-blue/90"
-                    : "cursor-not-allowed border border-border-medium bg-bg-elevated text-text-muted"
+                    : "cursor-not-allowed bg-accent-blue/15 text-accent-blue border border-accent-blue/40"
                 )}
                 aria-label="Send"
                 title={input.trim() ? "Send message" : "Type a message to send"}
