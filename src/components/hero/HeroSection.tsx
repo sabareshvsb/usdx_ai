@@ -6,6 +6,7 @@ import AnimatedBackground from "@/components/motion/AnimatedBackground";
 import CountUp from "@/components/motion/CountUp";
 import LiveBadge from "@/components/motion/LiveBadge";
 import Reveal from "@/components/motion/Reveal";
+import VerticalTextCarousel from "@/components/motion/VerticalTextCarousel";
 import { useDexScreener } from "@/hooks/useDexScreener";
 import { TOKEN, formatUsd, formatUsdCompact } from "@/lib/token";
 
@@ -13,6 +14,15 @@ const scrollToId = (id: string) => {
   const el = document.getElementById(id);
   if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
 };
+
+const TAGLINES = [
+  "The DeFi Engine That Pays You to Stay",
+  "Trigger Peg Technology",
+  "Sustainability",
+  "Strong Community",
+  "Smart",
+  "Future Of Currencies",
+];
 
 export default function HeroSection() {
   const { data, loading } = useDexScreener();
@@ -70,9 +80,11 @@ export default function HeroSection() {
           <Reveal delay={80}>
             <h1 className="mt-5 text-3xl font-extrabold leading-tight tracking-tight text-text-primary sm:text-5xl">
               {TOKEN.name}
-              <span className="hero-title-accent mt-1 block text-2xl sm:text-4xl">
-                The DeFi Engine That Pays You to Stay
-              </span>
+              <VerticalTextCarousel
+                phrases={TAGLINES}
+                className="mt-1"
+                textClassName="hero-title-accent block text-2xl font-extrabold tracking-tight sm:text-4xl"
+              />
             </h1>
           </Reveal>
 
