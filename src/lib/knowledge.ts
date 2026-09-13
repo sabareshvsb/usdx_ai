@@ -73,7 +73,7 @@ const knowledgeBase: RawKnowledgeEntry[] = [
     keywords: ["swap", "dai", "swap rules", "convert", "exchange"],
     category: "Swap Rules",
     sources: ["USDX Documentation", "Project Rules"],
-    text: "## USDX to DAI Swap\n\nThe USDX → DAI swap allows you to convert your USDX holdings into DAI. Swaps follow a defined set of rules.\n\n### Swap rules\n- Swaps may be subject to a minimum amount and a maximum per transaction\n- A fee may apply depending on the direction and prevailing pool conditions\n- Completed swaps settle on-chain and cannot be reversed\n- Supported pairs currently include USDX → DAI\n\n**Important:** Rates and liquidity are dynamic. Always review the official swap rules for the current terms before converting."
+    text: "## USDX to DAI Swap\n\nThe minimum staking value should be of $1000 then you can swap USDX to DAI in Base app.\n\nThe USDX → DAI swap allows you to convert your USDX holdings into DAI. Swaps follow a defined set of rules.\n\n### Swap rules\n- Swaps may be subject to a minimum amount and a maximum per transaction\n- A fee may apply depending on the direction and prevailing pool conditions\n- Completed swaps settle on-chain and cannot be reversed\n- Supported pairs currently include USDX → DAI\n\n**Important:** Rates and liquidity are dynamic. The minimum staking rule above is the standing project rule; always review the official swap rules for the current terms before converting."
   },
   {
     id: "ranks",
@@ -1577,13 +1577,12 @@ export function retrieveKnowledge(question: string): ChatAnswer {
 }
 
 export const suggestedQuestions = [
-  "How does USDX staking work?",
-  "Calculate my compounding",
-  "Explain USDX swap rules",
-  "Check my wallet",
   "What is USDX-SMART?",
   "What is Trigger Peg Technology?",
 ];
+
+export const SWAP_RULES_ANSWER =
+  "The minimum staking value should be of $1000 then you can swap USDX to DAI in Base app.";
 
 export const sourcesCatalog: KnowledgeSource[] = [
   { id: "docs", title: "USDX Documentation", category: "Documentation", updated: "2026-08-30" },

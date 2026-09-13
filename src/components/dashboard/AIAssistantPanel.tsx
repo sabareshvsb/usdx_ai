@@ -441,7 +441,7 @@ export default function AIAssistantPanel() {
         <div className="flex-1 min-h-0 overflow-y-auto px-5 py-4">
           <p className="text-[12px] font-medium text-text-muted mb-3">Recent conversations</p>
           <div className="space-y-2">
-            {["How does USDX staking work?", "Calculate my compounding", "What are the ranks?"].map((q) => (
+            {["What are the ranks?"].map((q) => (
               <button
                 key={q}
                 className="w-full rounded-[10px] border border-border-subtle bg-bg-elevated/40 px-3.5 py-2.5 text-left text-[12px] text-text-secondary transition-all hover:border-border-medium hover:text-text-primary"

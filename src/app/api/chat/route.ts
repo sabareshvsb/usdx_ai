@@ -4,7 +4,11 @@ import {
   qaMatchesToContext,
   QA_CATEGORIES,
 } from "@/lib/usdx-qa";
-import { retrieveKnowledge, sourcesCatalog } from "@/lib/knowledge";
+import {
+  retrieveKnowledge,
+  sourcesCatalog,
+  SWAP_RULES_ANSWER,
+} from "@/lib/knowledge";
 import {
   normalizeLang,
   FALLBACK_TEXT,
@@ -29,6 +33,17 @@ const LANGUAGE_NAMES: Record<LangCode, string> = {
   hi: "Hindi (हिन्दी)",
 };
 
+function isSwapRulesQuestion(question: string): boolean {
+  const q = question.toLowerCase();
+  return /\bswap\b/.test(q) && (/\brules?\b/.test(q) || q.includes("dai"));
+}
+
+function swapRulesSources() {
+  return sourcesCatalog
+    .filter((s) => s.title === "Project Rules")
+    .map((s) => ({ title: s.title, source: s.category, updated: s.updated }));
+}
+
 export async function POST(request: NextRequest) {
   let body: ChatRequestBody;
   try {
@@ -42,9 +57,17 @@ export async function POST(request: NextRequest) {
     .find((m) => m.role === "user");
   const question = lastUser?.content?.trim() ?? "";
   const language = normalizeLang(body.language);
+
+  if (isSwapRulesQuestion(question)) {
+    return NextResponse.json({
+      content: SWAP_RULES_ANSWER,
+      sources: swapRulesSources(),
+      unknown: false,
+    });
+  }
+
   const provider = process.env.AI_PROVIDER ?? "mock";
   const hasKey = Boolean(process.env.AI_API_KEY);
-
   const fallsBackToKb = retrieveKnowledge(question);
 
   let content: string;
