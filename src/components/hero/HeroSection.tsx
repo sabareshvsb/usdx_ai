@@ -6,6 +6,7 @@ import AnimatedBackground from "@/components/motion/AnimatedBackground";
 import CountUp from "@/components/motion/CountUp";
 import LiveBadge from "@/components/motion/LiveBadge";
 import Reveal from "@/components/motion/Reveal";
+import TextReveal from "@/components/motion/TextReveal";
 import VerticalTextCarousel from "@/components/motion/VerticalTextCarousel";
 import { useDexScreener } from "@/hooks/useDexScreener";
 import { TOKEN, formatUsd, formatUsdCompact } from "@/lib/token";
@@ -79,7 +80,7 @@ export default function HeroSection() {
 
           <Reveal delay={80}>
             <h1 className="mt-5 text-3xl font-extrabold leading-tight tracking-tight text-text-primary sm:text-5xl">
-              {TOKEN.name}
+              <TextReveal text={TOKEN.name} duration={3000} />
               <VerticalTextCarousel
                 phrases={TAGLINES}
                 className="mt-1"
