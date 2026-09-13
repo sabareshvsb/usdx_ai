@@ -29,7 +29,7 @@ export default function USDXOverviewCard() {
   const isPositive = priceChange24h >= 0;
 
   return (
-    <div className="group rounded-[14px] border border-border-subtle bg-bg-card p-5 transition-all duration-300 hover:border-border-medium">
+    <div className="card-lift group rounded-[14px] border border-border-subtle bg-bg-card p-5">
       <div className="flex items-center justify-between gap-2">
         <div className="flex min-w-0 flex-1 items-center gap-3">
           <Image
@@ -102,7 +102,7 @@ export default function USDXOverviewCard() {
 
       <div className="mt-4 rounded-[10px] border border-border-subtle bg-bg-elevated/40 p-3">
         <div className="flex items-center justify-between">
-          <span className="text-[10px] text-text-muted">USDXSMART/DAI · 15m</span>
+          <span className="text-[10px] text-text-muted">USDXSMART/DAI · 1H</span>
           <span className="flex items-center gap-1 text-[10px] text-text-muted">
             <Coins className="h-3 w-3" />
             Uniswap V2

@@ -17,6 +17,7 @@ import {
   ChevronLeft,
   ChevronRight,
   LogOut,
+  ShieldCheck,
 } from "lucide-react";
 import Logo from "@/components/ui/Logo";
 import { cn } from "@/lib/utils";
@@ -32,6 +33,7 @@ const navItems = [
   { label: "Analytics", href: "/dashboard?tab=analytics", icon: BarChart3 },
   { label: "Announcements", href: "/dashboard?tab=announcements", icon: Bell },
   { label: "Settings", href: "/settings", icon: Settings },
+  { label: "Admin", href: "/admin", icon: ShieldCheck },
 ];
 
 export default function Sidebar() {
@@ -77,7 +79,7 @@ export default function Sidebar() {
                 >
                   <item.icon
                     className={cn(
-                      "h-[18px] w-[18px] shrink-0 transition-colors",
+                      "h-[18px] w-[18px] shrink-0 transition-transform duration-200 group-hover:scale-110",
                       active ? "text-accent-blue" : "text-text-muted group-hover:text-text-secondary"
                     )}
                   />

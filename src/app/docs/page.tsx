@@ -1,6 +1,8 @@
 "use client";
 
 import AppShell from "@/components/layout/AppShell";
+import CmsAnnouncementBanner from "@/components/cms/CmsAnnouncementBanner";
+import Reveal from "@/components/motion/Reveal";
 import { AlertTriangle, Scale, MessageSquare } from "lucide-react";
 import Link from "next/link";
 
@@ -29,6 +31,8 @@ export default function DocsPage() {
   return (
     <AppShell>
       <div className="max-w-[1100px] mx-auto">
+        <CmsAnnouncementBanner />
+
         <div className="flex flex-col gap-8 lg:flex-row">
           <aside className="lg:w-56 lg:shrink-0">
             <div className="lg:sticky lg:top-24">
@@ -60,43 +64,47 @@ export default function DocsPage() {
           </aside>
 
           <div className="min-w-0 flex-1 space-y-10">
-            {sections.map(({ id, title, body, bullets }) => (
-              <section key={id} id={id} className="scroll-mt-24">
-                <h2 className="text-xl font-bold tracking-tight text-text-primary">{title}</h2>
-                {body.map((p, i) => (
-                  <p key={i} className="mt-2.5 max-w-2xl text-[13.5px] leading-relaxed text-text-primary/85">{p}</p>
-                ))}
-                {bullets && (
-                  <ul className="mt-3 max-w-2xl space-y-1.5">
-                    {bullets.map((b, i) => (
-                      <li key={i} className="flex gap-2 text-[13px] text-text-primary/85">
-                        <span className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-accent-blue" />
-                        {b}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </section>
+            {sections.map(({ id, title, body, bullets }, i) => (
+              <Reveal key={id} delay={i * 50}>
+                <section id={id} className="scroll-mt-24">
+                  <h2 className="text-xl font-bold tracking-tight text-text-primary">{title}</h2>
+                  {body.map((p, j) => (
+                    <p key={j} className="mt-2.5 max-w-2xl text-[13.5px] leading-relaxed text-text-primary/85">{p}</p>
+                  ))}
+                  {bullets && (
+                    <ul className="mt-3 max-w-2xl space-y-1.5">
+                      {bullets.map((b, j) => (
+                        <li key={j} className="flex gap-2 text-[13px] text-text-primary/85">
+                          <span className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-accent-blue" />
+                          {b}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </section>
+              </Reveal>
             ))}
 
-            <section id="rules" className="scroll-mt-24 rounded-[14px] border border-accent-amber/20 bg-accent-amber/5 p-5">
-              <div className="flex items-center gap-3">
-                <Scale className="h-5 w-5 text-accent-amber" />
-                <h2 className="text-lg font-bold tracking-tight text-text-primary">Project Rules</h2>
-              </div>
-              <p className="mt-2.5 max-w-2xl text-[13.5px] leading-relaxed text-text-primary/85">
-                All activity within the USDX ecosystem is governed by the official project rules. These define every number on the platform — rates, minimums, lock-up periods, rank thresholds, swap terms and affiliate conditions.
-              </p>
-              <div className="mt-3 flex items-start gap-3 rounded-[10px] border border-accent-amber/20 bg-accent-amber/8 px-3.5 py-3 max-w-2xl">
-                <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-accent-amber" />
-                <div>
-                  <p className="text-[12px] font-semibold text-text-primary">Source of truth</p>
-                  <p className="mt-0.5 text-[12.5px] leading-relaxed text-text-primary/85">
-                    The official Project Rules are the authoritative reference for every rate and requirement. USDX AI does not invent or interpret these parameters — it reports what is documented.
-                  </p>
+            <Reveal delay={100}>
+              <section id="rules" className="scroll-mt-24 rounded-[14px] border border-accent-amber/20 bg-accent-amber/5 p-5">
+                <div className="flex items-center gap-3">
+                  <Scale className="h-5 w-5 text-accent-amber" />
+                  <h2 className="text-lg font-bold tracking-tight text-text-primary">Project Rules</h2>
                 </div>
-              </div>
-            </section>
+                <p className="mt-2.5 max-w-2xl text-[13.5px] leading-relaxed text-text-primary/85">
+                  All activity within the USDX ecosystem is governed by the official project rules. These define every number on the platform — rates, minimums, lock-up periods, rank thresholds, swap terms and affiliate conditions.
+                </p>
+                <div className="mt-3 flex items-start gap-3 rounded-[10px] border border-accent-amber/20 bg-accent-amber/8 px-3.5 py-3 max-w-2xl">
+                  <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-accent-amber" />
+                  <div>
+                    <p className="text-[12px] font-semibold text-text-primary">Source of truth</p>
+                    <p className="mt-0.5 text-[12.5px] leading-relaxed text-text-primary/85">
+                      The official Project Rules are the authoritative reference for every rate and requirement. USDX AI does not invent or interpret these parameters — it reports what is documented.
+                    </p>
+                  </div>
+                </div>
+              </section>
+            </Reveal>
           </div>
         </div>
       </div>

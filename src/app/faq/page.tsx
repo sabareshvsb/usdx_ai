@@ -1,6 +1,8 @@
 "use client";
 
 import AppShell from "@/components/layout/AppShell";
+import CmsAnnouncementBanner from "@/components/cms/CmsAnnouncementBanner";
+import Reveal from "@/components/motion/Reveal";
 import { HelpCircle, MessageSquare } from "lucide-react";
 import Link from "next/link";
 
@@ -19,43 +21,48 @@ export default function FAQPage() {
   return (
     <AppShell>
       <div className="max-w-[820px] mx-auto">
-        <div className="text-center">
-          <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent-blue">
-            FAQ
-          </span>
-          <h1 className="mt-1 text-2xl font-bold tracking-tight text-text-primary">
-            Frequently Asked Questions
-          </h1>
-          <p className="mx-auto mt-2 max-w-xl text-[13px] text-text-muted">
-            Quick answers to the most common questions about USDX. Still unsure? Ask USDX AI.
-          </p>
-          <Link
-            href="/dashboard?tab=ai"
-            className="mt-4 inline-flex items-center gap-2 rounded-[10px] bg-accent-blue/10 border border-accent-blue/20 px-4 py-2 text-[12px] font-semibold text-accent-blue transition-colors hover:bg-accent-blue/20"
-          >
-            <MessageSquare className="h-3.5 w-3.5" />
-            Ask USDX AI
-          </Link>
-        </div>
+        <CmsAnnouncementBanner />
+
+        <Reveal>
+          <div className="text-center">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent-blue">
+              FAQ
+            </span>
+            <h1 className="mt-1 text-2xl font-bold tracking-tight text-text-primary">
+              Frequently Asked Questions
+            </h1>
+            <p className="mx-auto mt-2 max-w-xl text-[13px] text-text-muted">
+              Quick answers to the most common questions about USDX. Still unsure? Ask USDX AI.
+            </p>
+            <Link
+              href="/dashboard?tab=ai"
+              className="btn-feel mt-4 inline-flex items-center gap-2 rounded-[10px] bg-accent-blue/10 border border-accent-blue/20 px-4 py-2 text-[12px] font-semibold text-accent-blue transition-colors hover:-translate-y-0.5 hover:bg-accent-blue/20"
+            >
+              <MessageSquare className="h-3.5 w-3.5" />
+              Ask USDX AI
+            </Link>
+          </div>
+        </Reveal>
 
         <div className="mt-8 space-y-3">
-          {faqs.map((f) => (
-            <details
-              key={f.q}
-              className="group rounded-[14px] border border-border-subtle bg-bg-card transition-colors hover:border-border-medium"
-            >
-              <summary className="flex cursor-pointer list-none items-center gap-3 px-5 py-3.5">
-                <HelpCircle className="h-4 w-4 shrink-0 text-accent-blue" />
-                <span className="flex-1 text-[13px] font-medium text-text-primary">{f.q}</span>
-                <span className="rounded-full border border-border-subtle bg-bg-elevated px-2 py-0.5 text-[10px] text-text-muted">
-                  {f.category}
-                </span>
-                <span className="text-text-muted transition-transform group-open:rotate-45 text-[14px]">+</span>
-              </summary>
-              <div className="border-t border-border-subtle px-5 py-3.5">
-                <p className="text-[13px] leading-relaxed text-text-primary/85">{f.a}</p>
-              </div>
-            </details>
+          {faqs.map((f, i) => (
+            <Reveal key={f.q} delay={i * 40}>
+              <details
+                className="group rounded-[14px] border border-border-subtle bg-bg-card transition-colors hover:border-border-medium"
+              >
+                <summary className="flex cursor-pointer list-none items-center gap-3 px-5 py-3.5">
+                  <HelpCircle className="h-4 w-4 shrink-0 text-accent-blue" />
+                  <span className="flex-1 text-[13px] font-medium text-text-primary">{f.q}</span>
+                  <span className="rounded-full border border-border-subtle bg-bg-elevated px-2 py-0.5 text-[10px] text-text-muted">
+                    {f.category}
+                  </span>
+                  <span className="text-text-muted transition-transform group-open:rotate-45 text-[14px]">+</span>
+                </summary>
+                <div className="border-t border-border-subtle px-5 py-3.5">
+                  <p className="text-[13px] leading-relaxed text-text-primary/85">{f.a}</p>
+                </div>
+              </details>
+            </Reveal>
           ))}
         </div>
       </div>

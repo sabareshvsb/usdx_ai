@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
   MessageSquare,
-  BookOpen,
+  Trophy,
   Wallet,
   Settings,
 } from "lucide-react";
@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils";
 const items = [
   { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { label: "USDX AI", href: "/dashboard?tab=ai", icon: MessageSquare, primary: true },
-  { label: "Knowledge", href: "/knowledge", icon: BookOpen },
+  { label: "Leaderboard", href: "/dashboard#leaders", icon: Trophy },
   { label: "Wallet", href: "/dashboard?tab=wallet", icon: Wallet },
   { label: "More", href: "/settings", icon: Settings },
 ];
@@ -32,14 +32,14 @@ export default function MobileNav() {
               key={item.label}
               href={item.href}
               className={cn(
-                "flex flex-col items-center gap-0.5 rounded-[10px] px-3 py-1.5 text-[10px] font-medium transition-colors",
+                "flex flex-col items-center gap-0.5 rounded-[10px] px-3 py-1.5 text-[10px] font-medium transition-[transform,color] duration-200 active:scale-90",
                 active ? "text-accent-blue" : "text-text-muted",
                 item.primary && !active && "text-text-secondary"
               )}
             >
               <item.icon
                 className={cn(
-                  "h-5 w-5",
+                  "h-5 w-5 transition-transform duration-200",
                   active ? "text-accent-blue" : "text-text-muted",
                   item.primary && !active && "text-text-secondary"
                 )}

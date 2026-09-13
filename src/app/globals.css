@@ -2,45 +2,8 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Dark theme (default) */
+/* Light theme (default) */
 :root,
-.dark {
-  --bg-base: #000000;
-  --bg-panel: #000000;
-  --bg-card: #050505;
-  --bg-elevated: #0a0a0a;
-  --bg-hover: #111111;
-
-  --border-subtle: rgba(255, 255, 255, 0.04);
-  --border-medium: rgba(255, 255, 255, 0.07);
-  --border-active: rgba(96, 165, 250, 0.45);
-
-  --text-primary: #eef2f7;
-  --text-secondary: #7f86a0;
-  --text-muted: #484e60;
-
-  --accent-blue: #60a5fa;
-  --accent-cyan: #2dd4ee;
-  --accent-amber: #fbbf24;
-
-  --glow-blue: rgba(96, 165, 250, 0.15);
-  --glow-blue-strong: rgba(96, 165, 250, 0.35);
-  --glow-cyan: rgba(45, 212, 238, 0.12);
-  --glow-cyan-strong: rgba(45, 212, 238, 0.3);
-
-  --success: #34d399;
-  --warning: #f59e0b;
-  --error: #f87171;
-
-  --glass-bg: rgba(0, 0, 0, 0.85);
-  --glass-bg-strong: rgba(0, 0, 0, 0.95);
-  --scroll-thumb: rgba(255, 255, 255, 0.06);
-  --scroll-thumb-hover: rgba(255, 255, 255, 0.14);
-  --selection-bg: rgba(96, 165, 250, 0.28);
-  --grid-line: rgba(255, 255, 255, 0.03);
-}
-
-/* Light theme */
 .light {
   --bg-base: #f4f6fb;
   --bg-panel: #ffffff;
@@ -75,6 +38,43 @@
   --scroll-thumb-hover: rgba(15, 23, 42, 0.26);
   --selection-bg: rgba(37, 99, 235, 0.2);
   --grid-line: rgba(15, 23, 42, 0.07);
+}
+
+/* Dark theme */
+.dark {
+  --bg-base: #000000;
+  --bg-panel: #000000;
+  --bg-card: #050505;
+  --bg-elevated: #0a0a0a;
+  --bg-hover: #111111;
+
+  --border-subtle: rgba(255, 255, 255, 0.04);
+  --border-medium: rgba(255, 255, 255, 0.07);
+  --border-active: rgba(96, 165, 250, 0.45);
+
+  --text-primary: #eef2f7;
+  --text-secondary: #7f86a0;
+  --text-muted: #484e60;
+
+  --accent-blue: #60a5fa;
+  --accent-cyan: #2dd4ee;
+  --accent-amber: #fbbf24;
+
+  --glow-blue: rgba(96, 165, 250, 0.15);
+  --glow-blue-strong: rgba(96, 165, 250, 0.35);
+  --glow-cyan: rgba(45, 212, 238, 0.12);
+  --glow-cyan-strong: rgba(45, 212, 238, 0.3);
+
+  --success: #34d399;
+  --warning: #f59e0b;
+  --error: #f87171;
+
+  --glass-bg: rgba(0, 0, 0, 0.85);
+  --glass-bg-strong: rgba(0, 0, 0, 0.95);
+  --scroll-thumb: rgba(255, 255, 255, 0.06);
+  --scroll-thumb-hover: rgba(255, 255, 255, 0.14);
+  --selection-bg: rgba(96, 165, 250, 0.28);
+  --grid-line: rgba(255, 255, 255, 0.03);
 }
 
 :root {
@@ -440,5 +440,283 @@ body {
   }
   100% {
     text-shadow: 0 0 12px var(--accent-blue), 0 0 20px var(--glow-cyan);
+  }
+}
+
+/* ================================================================
+   Live-event motion layer (scroll, reveal, hover, live indicators)
+   ================================================================ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ---------- Scroll reveal primitives (toggled via .is-in by JS) ---------- */
+.rv {
+  opacity: 0;
+  transform: translateY(22px) scale(0.985);
+  transition:
+    opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.rv--left {
+  transform: translateX(-26px) scale(0.985);
+}
+.rv--right {
+  transform: translateX(26px) scale(0.985);
+}
+.rv--zoom {
+  transform: scale(0.93);
+}
+.rv.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Background orbs (hero / section ambience) ---------- */
+@keyframes orbFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(22px, -26px, 0) scale(1.08);
+  }
+}
+.bg-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(70px);
+  pointer-events: none;
+  will-change: transform;
+  animation: orbFloat 16s ease-in-out infinite alternate;
+}
+.bg-orb--blue {
+  background: var(--glow-blue-strong);
+}
+.bg-orb--cyan {
+  background: var(--glow-cyan-strong);
+}
+.bg-orb--amber {
+  background: rgba(217, 119, 6, 0.18);
+}
+
+/* Faint grid that fades toward the bottom (hero) */
+.hero-grid {
+  background-image: linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 46px 46px;
+  -webkit-mask-image: radial-gradient(
+    ellipse 75% 72% at 50% 0%,
+    black 35%,
+    transparent 78%
+  );
+  mask-image: radial-gradient(
+    ellipse 75% 72% at 50% 0%,
+    black 35%,
+    transparent 78%
+  );
+}
+
+/* Flowing headline glow (subtle background-position pan) */
+@keyframes glowPan {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+.hero-title-accent {
+  background: linear-gradient(
+    90deg,
+    var(--accent-blue) 0%,
+    var(--accent-cyan) 30%,
+    var(--accent-blue) 60%,
+    var(--accent-cyan) 100%
+  );
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glowPan 6s linear infinite;
+}
+
+/* ---------- LIVE indicator (pulsing dot + expanding ring) ---------- */
+@keyframes liveRing {
+  0% {
+    transform: scale(1);
+    opacity: 0.65;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+.live-dot {
+  position: relative;
+}
+.live-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: currentColor;
+  animation: liveRing 1.8s ease-out infinite;
+}
+
+/* ---------- Button / card / image interaction tokens ---------- */
+.btn-feel {
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.3s ease,
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease;
+}
+.btn-feel:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+.card-lift {
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s ease,
+    border-color 0.3s ease,
+    background-color 0.3s ease;
+}
+.card-lift:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-active);
+  box-shadow: 0 16px 40px -20px var(--glow-blue-strong);
+}
+
+.btn-glow {
+  box-shadow: 0 0 0 rgba(37, 99, 235, 0);
+}
+.btn-glow:hover {
+  box-shadow: 0 10px 34px -8px var(--glow-blue-strong),
+    0 0 26px -6px var(--glow-blue);
+}
+
+/* Image zoom on hover (parent needs .img-zoom-wrap) */
+.img-zoom-wrap {
+  overflow: hidden;
+}
+.img-zoom {
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.img-zoom-wrap:hover .img-zoom {
+  transform: scale(1.06);
+}
+
+/* Nav link animated underline */
+.nav-link {
+  position: relative;
+  transition: color 0.25s ease;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: -4px;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+  transition: right 0.3s ease;
+}
+.nav-link:hover::after,
+.nav-link.is-active::after {
+  right: 0;
+}
+.nav-link.is-active {
+  color: var(--text-primary);
+}
+
+/* ---------- Leaderboard ---------- */
+.lb-move {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes rankFlash {
+  0% {
+    transform: translateY(3px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.rank-flash {
+  animation: rankFlash 0.5s ease both;
+}
+
+/* #1 featured row ring */
+@keyframes crownGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 1px var(--accent-amber),
+      0 8px 30px -10px rgba(217, 119, 6, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 1px var(--accent-amber),
+      0 8px 40px -8px rgba(217, 119, 6, 0.6);
+  }
+}
+.lb-first {
+  animation: crownGlow 3s ease-in-out infinite;
+}
+
+/* ---------- Mobile hamburger ---------- */
+.hamburger {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 22px;
+}
+.hamburger span {
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.hamburger.is-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.hamburger.is-open span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.is-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ---------- Scroll progress bar ---------- */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  z-index: 60;
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+  width: 0%;
+  transition: width 0.08s linear;
+}
+
+/* ---------- Accessibility: respect reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 }

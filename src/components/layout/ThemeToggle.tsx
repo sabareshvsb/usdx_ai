@@ -4,20 +4,20 @@ import { useState } from "react";
 import { Moon, Sun } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-function getInitialTheme(): "dark" | "light" {
+function getInitialTheme(): "light" | "dark" {
   if (typeof window !== "undefined") {
-    return localStorage.getItem("usdx-theme") === "light" ? "light" : "dark";
+    return localStorage.getItem("usdx-theme") === "dark" ? "dark" : "light";
   }
-  return "dark";
+  return "light";
 }
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState<"dark" | "light">(getInitialTheme);
+  const [theme, setTheme] = useState<"light" | "dark">(getInitialTheme);
 
   const toggle = () => {
-    const next = theme === "dark" ? "light" : "dark";
+    const next = theme === "light" ? "dark" : "light";
     setTheme(next);
-    document.documentElement.classList.toggle("light", next === "light");
+    document.documentElement.classList.toggle("dark", next === "dark");
     localStorage.setItem("usdx-theme", next);
   };
 

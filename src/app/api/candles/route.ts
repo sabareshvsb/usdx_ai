@@ -3,7 +3,7 @@ import { fetchCandles } from "@/lib/geckoterminal";
 
 export async function GET() {
   try {
-    const candles = await fetchCandles("minute", 15, 100);
+    const candles = await fetchCandles("hour", 1, 100);
     const now = Math.floor(Date.now() / 1000);
     const dayAgo = now - 24 * 60 * 60;
 

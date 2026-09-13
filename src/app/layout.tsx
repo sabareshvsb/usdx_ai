@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     template: "%s · USDX AI",
   },
   description:
-    "USDX AI — live intelligence dashboard for USDXSMART (Unique Smart Contract Decentralized Stable Coin) on Base. Real price, 15-min candlesticks, pool analytics and on-chain data.",
+    "USDX AI — live intelligence dashboard for USDXSMART (Unique Smart Contract Decentralized Stable Coin) on Base. Real price, 1-hour candlesticks, pool analytics and on-chain data.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -31,7 +31,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{if(localStorage.getItem('usdx-theme')==='light'){document.documentElement.classList.add('light');}}catch(e){}})();`,
+            __html: `(function(){try{if(localStorage.getItem('usdx-theme')==='dark'){document.documentElement.classList.add('dark');}}catch(e){}})();`,
           }}
         />
       </head>
