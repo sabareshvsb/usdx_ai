@@ -722,6 +722,25 @@ html {
   animation: eliteGlowPulse 2.4s ease-in-out infinite;
 }
 
+/* ---------- Top Leaders marquee ---------- */
+@keyframes marqueeScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 50s linear infinite;
+  will-change: transform;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
 /* ---------- Mobile hamburger ---------- */
 .hamburger {
   display: inline-flex;

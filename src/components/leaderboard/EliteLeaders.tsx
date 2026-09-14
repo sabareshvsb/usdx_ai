@@ -22,6 +22,7 @@ const ELITE_LEADERS = [
   "MR.SELVA",
   "MR.HARIPRASAD",
   "MR.GUNA",
+  "MR.JHONSON",
 ];
 
 export default function EliteLeaders() {
