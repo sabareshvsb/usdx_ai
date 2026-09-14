@@ -19,6 +19,7 @@ import {
   Sparkles,
   Volume2,
   VolumeX,
+  Trash2,
 } from "lucide-react";
 import {
   LANGUAGE_OPTIONS,
@@ -31,8 +32,36 @@ import {
   type SpeechRecognitionLike,
 } from "@/lib/voice";
 
+const SESSIONS_KEY = "usdx_ai_sessions";
+
+type SavedSession = {
+  id: string;
+  title: string;
+  updatedAt: number;
+  messages: MessageType[];
+};
+
+function buildSessionEntry(msgs: MessageType[], id: string): SavedSession {
+  const firstUser = msgs.find((m) => m.role === "user");
+  return {
+    id,
+    title: firstUser ? firstUser.content.replace(/\s+/g, " ").slice(0, 48) : "New chat",
+    updatedAt: Date.now(),
+    messages: msgs,
+  };
+}
+
+function timeAgo(ts: number): string {
+  const s = Math.floor((Date.now() - ts) / 1000);
+  if (s < 60) return "just now";
+  if (s < 3600) return `${Math.floor(s / 60)}m ago`;
+  if (s < 86400) return `${Math.floor(s / 3600)}h ago`;
+  return `${Math.floor(s / 86400)}d ago`;
+}
+
 export default function AIAssistantPanel() {
   const [messages, setMessages] = useState<MessageType[]>([]);
+  const [sessions, setSessions] = useState<SavedSession[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [listening, setListening] = useState(false);
@@ -46,6 +75,7 @@ export default function AIAssistantPanel() {
   const endRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
   const recognitionRef = useRef<SpeechRecognitionLike | null>(null);
+  const sessionIdRef = useRef<string | null>(null);
 
   const hasConversation = messages.length > 0;
 
@@ -53,6 +83,17 @@ export default function AIAssistantPanel() {
     void Promise.resolve().then(() =>
       setSpeechSupported(isSpeechRecognitionSupported())
     );
+  }, []);
+
+  useEffect(() => {
+    void Promise.resolve().then(() => {
+      try {
+        const raw = window.localStorage.getItem(SESSIONS_KEY);
+        if (raw) setSessions(JSON.parse(raw) as SavedSession[]);
+      } catch {
+        /* ignore */
+      }
+    });
   }, []);
 
   useEffect(() => {
@@ -209,7 +250,59 @@ export default function AIAssistantPanel() {
     stopSpeaking();
     stopListening();
     setMicError(null);
+    saveSession(messages);
+    sessionIdRef.current = null;
     setMessages([]);
+  };
+
+  const saveSession = (msgs: MessageType[]) => {
+    if (msgs.length === 0) return;
+    const id = sessionIdRef.current ?? (sessionIdRef.current = uuidv4());
+    const entry = buildSessionEntry(msgs, id);
+    setSessions((prev) => {
+      const next = [entry, ...prev.filter((s) => s.id !== id)].slice(0, 20);
+      try {
+        window.localStorage.setItem(SESSIONS_KEY, JSON.stringify(next));
+      } catch { /* ignore */ }
+      return next;
+    });
+  };
+
+  useEffect(() => {
+    if (messages.length === 0) return;
+    const msgs = messages;
+    const t = setTimeout(() => {
+      const id = sessionIdRef.current ?? (sessionIdRef.current = uuidv4());
+      setSessions((prev) => {
+        const entry = buildSessionEntry(msgs, id);
+        const next = [entry, ...prev.filter((s) => s.id !== id)].slice(0, 20);
+        try {
+          window.localStorage.setItem(SESSIONS_KEY, JSON.stringify(next));
+        } catch { /* ignore */ }
+        return next;
+      });
+    }, 500);
+    return () => clearTimeout(t);
+  }, [messages]);
+
+  const openSession = (session: SavedSession) => {
+    stopSpeaking();
+    stopListening();
+    setMicError(null);
+    sessionIdRef.current = session.id;
+    setMessages(session.messages);
+    setTab("chat");
+  };
+
+  const deleteSession = (id: string) => {
+    if (sessionIdRef.current === id) sessionIdRef.current = null;
+    setSessions((prev) => {
+      const next = prev.filter((s) => s.id !== id);
+      try {
+        window.localStorage.setItem(SESSIONS_KEY, JSON.stringify(next));
+      } catch { /* ignore */ }
+      return next;
+    });
   };
 
   return (
@@ -475,15 +568,36 @@ export default function AIAssistantPanel() {
       ) : (
         /* History tab */
         <div className="flex-1 min-h-0 overflow-y-auto px-5 py-4">
-          <p className="text-[12px] font-medium text-text-muted mb-3">Recent conversations</p>
+          <p className="text-[12px] font-medium text-text-muted mb-3">Previous chats</p>
           <div className="space-y-2">
-            {["What are the ranks?"].map((q) => (
-              <button
-                key={q}
-                className="w-full rounded-[10px] border border-border-subtle bg-bg-elevated/40 px-3.5 py-2.5 text-left text-[12px] text-text-secondary transition-all hover:border-border-medium hover:text-text-primary"
-              >
-                {q}
-              </button>
+            {sessions.length === 0 && (
+              <p className="py-6 text-center text-[12px] text-text-muted/70">
+                No previous chats yet.
+              </p>
+            )}
+            {sessions.map((s) => (
+              <div key={s.id} className="group flex items-center gap-2">
+                <button
+                  onClick={() => openSession(s)}
+                  className="min-w-0 flex-1 rounded-[10px] border border-border-subtle bg-bg-elevated/40 px-3.5 py-2.5 text-left transition-all hover:border-border-medium"
+                >
+                  <div className="truncate text-[12px] text-text-secondary group-hover:text-text-primary">
+                    {s.title}
+                  </div>
+                  <div className="mt-0.5 text-[10px] text-text-muted/60">
+                    {timeAgo(s.updatedAt)} · {s.messages.length} message{s.messages.length === 1 ? "" : "s"}
+                  </div>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => deleteSession(s.id)}
+                  aria-label="Delete this chat"
+                  title="Delete"
+                  className="flex h-7 w-7 shrink-0 items-center justify-center rounded-[8px] text-text-muted transition-colors hover:bg-error/10 hover:text-error"
+                >
+                  <Trash2 className="h-3.5 w-3.5" />
+                </button>
+              </div>
             ))}
           </div>
         </div>
