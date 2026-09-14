@@ -3,19 +3,13 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { ChevronDown, Wifi } from "lucide-react";
+import { Wifi } from "lucide-react";
 import Logo from "@/components/ui/Logo";
 import ThemeToggle from "@/components/layout/ThemeToggle";
 import { cn } from "@/lib/utils";
 import { TOKEN } from "@/lib/token";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
 import LiveBadge from "@/components/motion/LiveBadge";
-
-const networks = [
-  { name: "Base", color: "bg-[#0052ff]" },
-  { name: "Ethereum", color: "bg-[#627eea]" },
-  { name: "BSC", color: "bg-[#f0b90b]" },
-];
 
 const DASH_SECTIONS = ["hero", "overview", "leaders", "ecosystem"] as const;
 
@@ -33,7 +27,6 @@ function shortAddr(a: string) {
 
 export default function TopBar() {
   const pathname = usePathname();
-  const [networkOpen, setNetworkOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -84,7 +77,6 @@ export default function TopBar() {
       e.preventDefault();
       el.scrollIntoView({ behavior: "smooth", block: "start" });
     }
-    setNetworkOpen(false);
   };
 
   return (
@@ -153,31 +145,12 @@ export default function TopBar() {
         <div className="flex-1" />
 
         <div className="flex items-center gap-2">
-          {/* Network selector */}
-          <div className="relative">
-            <button
-              type="button"
-              onClick={() => setNetworkOpen((o) => !o)}
-              className="btn-feel flex items-center gap-2 rounded-[10px] border border-border-subtle bg-bg-card px-3 py-1.5 text-[12px] font-medium text-text-secondary hover:border-border-medium hover:text-text-primary"
-            >
-              <div className="h-2 w-2 rounded-full bg-[#0052ff]" />
-              <span className="hidden sm:inline">Base</span>
-              <ChevronDown className="h-3 w-3 text-text-muted" />
-            </button>
-            {networkOpen && (
-              <div className="absolute right-0 top-full mt-1 w-40 rounded-[12px] border border-border-subtle bg-bg-card p-1 shadow-xl animate-fade-in">
-                {networks.map((n) => (
-                  <button
-                    key={n.name}
-                    onClick={() => setNetworkOpen(false)}
-                    className="flex w-full items-center gap-2.5 rounded-[8px] px-3 py-2 text-[12px] text-text-secondary transition-colors hover:bg-bg-elevated hover:text-text-primary"
-                  >
-                    <div className={cn("h-2 w-2 rounded-full", n.color)} />
-                    {n.name}
-                  </button>
-                ))}
-              </div>
-            )}
+          {/* Network indicator (Base only) */}
+          <div className="flex items-center gap-2 rounded-[10px] border border-border-subtle bg-bg-card px-3 py-1.5">
+            <span className="h-1.5 w-1.5 rounded-full bg-success animate-[pulseDot_2s_ease-in-out_infinite]" />
+            <span className="hidden sm:inline text-[12px] font-medium text-text-secondary">
+              Base
+            </span>
           </div>
 
           {/* Token contract indicator */}

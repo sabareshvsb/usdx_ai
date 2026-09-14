@@ -216,7 +216,7 @@ values
   ('announcements', 'Announcements', 'Latest announcements', 'Official notices from the USDX team.', '[]', true, 'published', 4, now()),
   ('gallery', 'Gallery', 'Media & gallery', 'Images and visuals from the ecosystem.', '[]', true, 'published', 5, now()),
   ('contact', 'Contact', 'Contact us', 'Reach the USDX team.', '[{"type":"paragraph","text":"Messages and contact details are managed from the admin panel."}]', true, 'published', 6, now()),
-  ('footer', 'Footer', 'USDX AI', 'All system data is for informational purposes only.', '[{"type":"paragraph","text":"© 2026 USDX AI. Not financial advice."}]', true, 'published', 7, now())
+  ('footer', 'Footer', 'USDX AI', 'All system data is for informational purposes only.', '[{"type":"paragraph","text":"© 2026 USDX AI."}]', true, 'published', 7, now())
 on conflict ("key") do nothing;
 
 -- Some getting-started instructions
