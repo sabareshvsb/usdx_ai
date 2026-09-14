@@ -77,7 +77,7 @@ export default function EliteLeaders() {
                 </h2>
               </div>
               <p className="mt-1.5 text-[12px] text-[#8fa0c4]">
-                Distinguished founding members of the USDX ecosystem
+                Distinguished leading members of the USDX ecosystem
               </p>
             </div>
             <span className="flex items-center gap-1.5 rounded-full border border-[#e9b44c]/40 bg-[#e9b44c]/10 px-3 py-1 text-[11px] font-semibold text-[#f5c26b]">
