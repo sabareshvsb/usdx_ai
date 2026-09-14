@@ -42,6 +42,7 @@ const TOP_LEADERS = [
   "MR.VELAN",
   "MRS.VANI",
   "MR.SOLAN",
+  "MRS.BHARATHI",
 ];
 
 function MarqueeRow({ reverse = false }: { reverse?: boolean }) {
