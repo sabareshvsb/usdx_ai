@@ -61,9 +61,6 @@ export default function TopLeadersMarquee() {
             <h2 className="font-cinzel text-[15px] font-bold tracking-wide text-[#f5c26b] sm:text-[17px]">
               TOP LEADERS
             </h2>
-            <span className="rounded-full border border-[#e9b44c]/40 bg-[#e9b44c]/10 px-2.5 py-0.5 text-[10px] font-semibold text-[#f5c26b]">
-              {TOP_LEADERS.length} Rising Stars
-            </span>
           </div>
 
           {/* Marquee */}
