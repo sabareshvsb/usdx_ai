@@ -5,24 +5,24 @@ import { Crown, Gem, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const ELITE_LEADERS = [
-  "MR.DINESH",
-  "MR.ARUL SABARISH",
-  "MR.HARIHARAN",
-  "MR.MOHAN",
-  "MR.MUTHU KUMAR",
-  "MR.SAHUL HAMEED",
+  "MR.DINESHKUMAR",
   "MR.YUVARAJ",
-  "MR.SOUNDAR",
+  "MR.SHAHUL HAMEED",
   "MR.MAHESH",
-  "MR.NAVEEN",
   "MR.BOOPATHI",
-  "MR.SALEEM",
-  "MR.MANIKANDA PARBU",
-  "MR.ARJUN",
-  "MR.SELVA",
+  "MR.NAVEEN",
+  "MR.JOHNSON",
+  "MR.GUNASEKARAN",
+  "MR.ARUL SABARISH",
+  "MR.MUTHUKUMAR",
+  "MR.HARIHARAN",
+  "MR.SOUNDAR",
+  "MR.MOHAN",
+  "MR.MANIKANDA PRABU",
   "MR.HARIPRASAD",
-  "MR.GUNA",
-  "MR.JHONSON",
+  "MR.SELVA",
+  "MR.SALEEM",
+  "MR.SABAREESH",
 ];
 
 export default function EliteLeaders() {
