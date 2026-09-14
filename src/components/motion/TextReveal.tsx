@@ -21,9 +21,7 @@ export default function TextReveal({
     typeof window !== "undefined" &&
     !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
-  const [revealed, setRevealed] = useState(() =>
-    reduceMotion ? text.length : 0
-  );
+  const [revealed, setRevealed] = useState(0);
 
   useEffect(() => {
     if (reduceMotion) {

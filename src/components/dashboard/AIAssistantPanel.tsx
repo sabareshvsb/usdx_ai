@@ -40,15 +40,20 @@ export default function AIAssistantPanel() {
   const [tab, setTab] = useState<"chat" | "history">("chat");
   const [language, setLanguage] = useState("English");
   const [langOpen, setLangOpen] = useState(false);
-  const [speechSupported] = useState<boolean>(
-    typeof window !== "undefined" ? isSpeechRecognitionSupported() : false
-  );
+  const [speechSupported, setSpeechSupported] = useState(false);
+  const [micError, setMicError] = useState<string | null>(null);
 
   const endRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
   const recognitionRef = useRef<SpeechRecognitionLike | null>(null);
 
   const hasConversation = messages.length > 0;
+
+  useEffect(() => {
+    void Promise.resolve().then(() =>
+      setSpeechSupported(isSpeechRecognitionSupported())
+    );
+  }, []);
 
   useEffect(() => {
     const list = listRef.current;
@@ -140,6 +145,7 @@ export default function AIAssistantPanel() {
     const Ctor = getSpeechRecognitionCtor();
     if (!Ctor) return;
     const recognition = new Ctor();
+    setMicError(null);
     recognition.lang = getLanguageByLabel(language).code;
     recognition.continuous = true;
     recognition.interimResults = true;
@@ -149,12 +155,30 @@ export default function AIAssistantPanel() {
       for (let i = event.resultIndex; i < event.results.length; i++) {
         transcript += event.results[i][0].transcript;
       }
-      setInput(transcript);
+      if (transcript.trim() && !/^[.!?]+$/.test(transcript)) {
+        setInput(transcript);
+      }
     };
 
     recognition.onerror = (event) => {
-      if (event.error === "not-allowed") {
-        alert("Microphone access was denied. Please allow microphone access in your browser.");
+      const code = event.error ?? "unknown";
+      const messages: Record<string, string> = {
+        "not-allowed":
+          "Microphone access was denied. Allow microphone access in your browser and try again.",
+        "no-speech":
+          "No speech was detected. Click the mic and speak clearly.",
+        "audio-capture":
+          "No microphone was found on this device. Connect one and try again.",
+        "network":
+          "Speech recognition is unavailable (network error). Check your connection and retry.",
+        "service-not-allowed":
+          "Speech recognition is blocked by your browser. Allow it and try again.",
+        "language-not-supported":
+          "Speech recognition does not support the selected language in this browser.",
+      };
+      setMicError(messages[code] ?? `Speech recognition failed (${code}).`);
+      if (code === "not-allowed") {
+        alert(messages[code]);
       }
     };
 
@@ -163,7 +187,13 @@ export default function AIAssistantPanel() {
     };
 
     recognitionRef.current = recognition;
-    recognition.start();
+    try {
+      recognition.start();
+    } catch {
+      setMicError("Could not start the microphone. Try again.");
+      setListening(false);
+      return;
+    }
     setListening(true);
   }, [speechSupported, language]);
 
@@ -178,6 +208,7 @@ export default function AIAssistantPanel() {
   const newChat = () => {
     stopSpeaking();
     stopListening();
+    setMicError(null);
     setMessages([]);
   };
 
@@ -434,6 +465,11 @@ export default function AIAssistantPanel() {
                 ? `Voice input & output enabled for ${language}. Speaker buttons read responses aloud.`
                 : "Voice input is not supported in this browser. Try Chrome or Edge."}
             </p>
+            {micError && (
+              <p className="mt-1.5 text-center text-[10px] font-medium text-error">
+                {micError}
+              </p>
+            )}
           </div>
         </div>
       ) : (
