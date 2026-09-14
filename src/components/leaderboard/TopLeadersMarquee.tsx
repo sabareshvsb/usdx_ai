@@ -44,6 +44,32 @@ const TOP_LEADERS = [
   "MR.SOLAN",
 ];
 
+function MarqueeRow({ reverse = false }: { reverse?: boolean }) {
+  return (
+    <div className="relative overflow-hidden">
+      <div
+        className={`marquee-track items-center gap-x-5 ${
+          reverse ? "marquee-track--reverse" : ""
+        }`}
+      >
+        {[...TOP_LEADERS, ...TOP_LEADERS].map((name, i) => (
+          <span key={`${reverse}-${i}`} className="flex items-center gap-x-5">
+            <span className="elite-gold-text font-cinzel text-[13px] font-bold tracking-[0.06em] sm:text-[14px]">
+              {name}
+            </span>
+            <Star
+              className="h-3 w-3 shrink-0 text-[#e9b44c]"
+              fill="currentColor"
+            />
+          </span>
+        ))}
+      </div>
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#0c1220] to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#0a0f1c] to-transparent" />
+    </div>
+  );
+}
+
 export default function TopLeadersMarquee() {
   return (
     <section id="top-leaders" className="scroll-mt-16">
@@ -63,24 +89,12 @@ export default function TopLeadersMarquee() {
             </h2>
           </div>
 
-          {/* Marquee */}
+          {/* Two-row marquee */}
           <div className="pb-5 pt-4">
-            <div className="relative overflow-hidden border-y border-[#ffffff]/5 bg-[#0a0f1c]/60 py-3">
-              <div className="marquee-track items-center gap-x-5">
-                {[...TOP_LEADERS, ...TOP_LEADERS].map((name, i) => (
-                  <span key={i} className="flex items-center gap-x-5">
-                    <span className="elite-gold-text font-cinzel text-[13px] font-bold tracking-[0.06em] sm:text-[14px]">
-                      {name}
-                    </span>
-                    <Star
-                      className="h-3 w-3 shrink-0 text-[#e9b44c]"
-                      fill="currentColor"
-                    />
-                  </span>
-                ))}
-              </div>
-              <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#0c1220] to-transparent" />
-              <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#0a0f1c] to-transparent" />
+            <div className="border-y border-[#ffffff]/5 bg-[#0a0f1c]/60 py-3">
+              <MarqueeRow />
+              <div className="my-3 h-px bg-[#ffffff]/5" />
+              <MarqueeRow reverse />
             </div>
           </div>
         </div>

@@ -734,11 +734,14 @@ html {
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marqueeScroll 50s linear infinite;
+  animation: marqueeScroll 90s linear infinite;
   will-change: transform;
 }
 .marquee-track:hover {
   animation-play-state: paused;
+}
+.marquee-track--reverse {
+  animation-direction: reverse;
 }
 
 /* ---------- Mobile hamburger ---------- */
