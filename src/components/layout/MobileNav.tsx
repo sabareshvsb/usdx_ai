@@ -6,7 +6,6 @@ import {
   LayoutDashboard,
   MessageSquare,
   Trophy,
-  Wallet,
   Settings,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -15,7 +14,6 @@ const items = [
   { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { label: "USDX AI", href: "/dashboard?tab=ai", icon: MessageSquare, primary: true },
   { label: "Leaderboard", href: "/dashboard#leaders", icon: Trophy },
-  { label: "Wallet", href: "/dashboard?tab=wallet", icon: Wallet },
   { label: "More", href: "/settings", icon: Settings },
 ];
 
