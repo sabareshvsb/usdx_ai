@@ -113,6 +113,7 @@
     "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo,
     monospace;
+  --font-cinzel: var(--font-cinzel-google), "Cinzel", ui-serif, Georgia, serif;
 }
 
 *,
@@ -668,6 +669,57 @@ html {
 }
 .lb-first {
   animation: crownGlow 3s ease-in-out infinite;
+}
+
+/* ---------- Elite Leaders ---------- */
+@keyframes eliteRevealIn {
+  0% {
+    opacity: 0;
+    transform: translateY(22px) scale(0.92);
+    filter: blur(8px);
+  }
+  55% {
+    filter: blur(0);
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+@keyframes eliteGlowPulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.elite-name {
+  opacity: 0;
+}
+.elite-name.is-in {
+  animation: eliteRevealIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.elite-gold-text {
+  background: linear-gradient(
+    110deg,
+    #f9d489 0%,
+    #e9b44c 30%,
+    #fff6dd 50%,
+    #e9b44c 70%,
+    #f9d489 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glowPan 6s linear infinite;
+}
+.elite-glow {
+  animation: eliteGlowPulse 2.4s ease-in-out infinite;
 }
 
 /* ---------- Mobile hamburger ---------- */

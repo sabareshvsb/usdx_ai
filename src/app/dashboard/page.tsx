@@ -14,6 +14,7 @@ import TransactionsPanel from "@/components/dashboard/TransactionsPanel";
 import CmsAnnouncementBanner from "@/components/cms/CmsAnnouncementBanner";
 import CmsSectionsRenderer from "@/components/cms/CmsSectionsRenderer";
 import HeroSection from "@/components/hero/HeroSection";
+import EliteLeaders from "@/components/leaderboard/EliteLeaders";
 import LiveLeaderboard from "@/components/leaderboard/LiveLeaderboard";
 import Reveal from "@/components/motion/Reveal";
 
@@ -64,6 +65,11 @@ export default function DashboardPage() {
             <CompoundingCard />
             <WalletCard />
             <AnalyticsCard />
+          </div>
+
+          {/* Elite Leaders */}
+          <div className="mt-6">
+            <EliteLeaders />
           </div>
 
           {/* Live leaderboard */}
