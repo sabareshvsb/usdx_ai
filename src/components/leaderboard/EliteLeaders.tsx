@@ -82,7 +82,7 @@ export default function EliteLeaders() {
             </div>
             <span className="flex items-center gap-1.5 rounded-full border border-[#e9b44c]/40 bg-[#e9b44c]/10 px-3 py-1 text-[11px] font-semibold text-[#f5c26b]">
               <Gem className="h-3.5 w-3.5" />
-              {ELITE_LEADERS.length} Founders
+              {ELITE_LEADERS.length} Elites
             </span>
           </div>
 
