@@ -48,17 +48,20 @@ function MarqueeRow({ reverse = false }: { reverse?: boolean }) {
   return (
     <div className="relative overflow-hidden">
       <div
-        className={`marquee-track items-center gap-x-5 ${
+        className={`marquee-track items-center ${
           reverse ? "marquee-track--reverse" : ""
         }`}
       >
         {[...TOP_LEADERS, ...TOP_LEADERS].map((name, i) => (
-          <span key={`${reverse}-${i}`} className="flex items-center gap-x-5">
+          <span
+            key={`${reverse}-${i}`}
+            className="flex shrink-0 items-center whitespace-nowrap"
+          >
             <span className="elite-gold-text font-cinzel text-[13px] font-bold tracking-[0.06em] sm:text-[14px]">
               {name}
             </span>
             <Star
-              className="h-3 w-3 shrink-0 text-[#e9b44c]"
+              className="mx-5 h-3 w-3 shrink-0 text-[#e9b44c]"
               fill="currentColor"
             />
           </span>
