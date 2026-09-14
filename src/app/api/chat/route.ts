@@ -82,7 +82,12 @@ export async function POST(request: NextRequest) {
   } else {
     const matches = retrieveQa(question, 8);
     const qaContext = qaMatchesToContext(matches, 16000);
-    const kbContext = qaContext || fallsBackToKb.text;
+    const kbContext = [
+      qaContext,
+      fallsBackToKb.unknown ? "" : fallsBackToKb.text,
+    ]
+      .filter(Boolean)
+      .join("\n\n");
 
     let aiText = "";
     try {
