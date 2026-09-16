@@ -80,7 +80,7 @@ const knowledgeBase: RawKnowledgeEntry[] = [
     keywords: ["ranks", "rank", "tiers", "level", "advance", "ladder"],
     category: "Ranks",
     sources: ["USDX Documentation", "Project Rules"],
-    text: "## USDX Ranks\n\nUSDX features a tiered rank system. As you stake more and grow your network, you progress through ranks that unlock higher yields and additional benefits.\n\n### How ranks work\n- Your rank is determined by your cumulative staked volume and qualifying activity\n- Advancing requires meeting defined thresholds\n- Higher ranks increase reward multipliers\n- Ranks are automatically applied once thresholds are satisfied\n\n**Note:** Exact rank names and thresholds come from the official USDX rules and are not interpreted by this assistant."
+    text: "## USDX Ranks\n\nUSDX features a tiered rank system. As you stake more and grow your network, you progress through ranks that unlock higher yields and additional benefits.\n\n### Published rank names and self-staking daily yields\n| Rank | Self-Staking Daily Yield |\n| --- | ---: |\n| UX | 0.3% |\n| Smart-X | 0.4% |\n| Plus-X | 0.5% |\n| Pro-X | 0.6% |\n| Chief-X | 0.7% |\n| Royal-X | 0.8% |\n| Empire-X | 1.0% |\n\nAffiliate staking daily yield is 0.3% for all ranks and is separate from the rank self-staking yield. Rank eligibility thresholds are defined in the official USDX-SMART rules."
   },
   {
     id: "affiliate",
@@ -1528,6 +1528,155 @@ const knowledgeBase: RawKnowledgeEntry[] = [
     category: "Easy Viva Questions",
     sources: ["USDX-SMART Documentation", "USDX Knowledge Base"],
     text: "## 30-Second USDX Explanation\n\nUSDX-SMART is a decentralized crypto ecosystem built on the Base Layer-2 blockchain. The project describes USDX as a non-buyable, community-minted stablecoin designed to maintain a peg with DAI. Users can participate through staking and re-staking, while the ecosystem includes a Trigger Peg mechanism, liquidity pools, referral and affiliate systems, fixed APY options, and other planned components."
+  },
+
+  // ─── USDX-SMART RULES & PUBLISHED DATA ──────────────────────────────
+  {
+    id: "usdx-rules-ranks",
+    keywords: ["rank yields", "rank table", "smart x yield", "plus x yield", "pro x yield", "chief x yield", "royal x yield", "empire x yield", "ux yield", "self staking yield ranks", "yield percentage rank"],
+    category: "Ranks",
+    sources: ["USDX-SMART Documentation", "USDX Knowledge Base"],
+    text: "## USDX Rank Self-Staking Daily Yields\n\nThe published USDX-SMART rank table associates these daily self-staking yields:\n\n| Rank | Self-Staking Daily Yield |\n| --- | ---: |\n| UX | 0.3% |\n| Smart-X | 0.4% |\n| Plus-X | 0.5% |\n| Pro-X | 0.6% |\n| Chief-X | 0.7% |\n| Royal-X | 0.8% |\n| Empire-X | 1.0% |\n\nThese are the seven published rank names. Affiliate staking daily yield (0.3%) is separate from the rank self-staking yield."
+  },
+  {
+    id: "usdx-rules-eligibility",
+    keywords: ["rank eligibility", "rank requirements", "smart x eligibility", "plus x eligibility", "pro x eligibility", "chief x eligibility", "royal x eligibility", "empire x eligibility", "become smart x", "qualify rank"],
+    category: "Ranks",
+    sources: ["USDX-SMART Documentation"],
+    text: "## USDX Rank Eligibility\n\nPublished eligibility requirements:\n- UX: initial rank; self and all directs active; minimum staking $100.\n- Smart-X: self $500, 3 directs $500, within 50 days.\n- Plus-X: self $500, 6 directs $500, within 100 days.\n- Pro-X: self $500, 12 directs $500, within 365 days.\n- Chief-X: self $500, 9 directs $500, within 150 days.\n- Royal-X: the rank/reward section associates it with claimed affiliate yield greater than $50,000.\n- Empire-X: associated with claimed affiliate yield greater than $200,000 / $500,000 depending on the extracted table position.\n\nBecause the source formatting is ambiguous for Royal-X and Empire-X, a precise eligibility requirement beyond the above should not be invented."
+  },
+  {
+    id: "usdx-rules-self-staking",
+    keywords: ["self stake", "self staking rules", "min self stake", "maximum self stake", "unlimited stake", "minimum staking value", "2x cap"],
+    category: "Staking",
+    sources: ["USDX-SMART Documentation"],
+    text: "## Self Staking\n\n- Minimum staking: greater than $0.\n- Maximum staking: unlimited, according to the documentation.\n- Maximum earning cap: 2X / 200% of staking value.\n- Re-staking is required once the 2X cap is reached.\n\nThe 2X cap for a $1,000 stake is $2,000. This is a theoretical example based on the published $1,000 example."
+  },
+  {
+    id: "usdx-rules-2x",
+    keywords: ["2x cap", "two times cap", "200 percent", "cap meaning", "max return", "maximum return"],
+    category: "2X Cap and Calculations",
+    sources: ["USDX-SMART Documentation", "USDX Knowledge Base"],
+    text: "## The 2X Maximum Cap\n\nThe USDX staking system uses a stated 2X maximum cap: the maximum return is 200% of the applicable staking value. If the staking value is $1,000, the maximum return is $2,000; if $500, the cap is $1,000; if $2,000, the cap is $4,000.\n\nOnce the 2X cap is reached:\n- The user becomes inactive for the relevant earning mechanism.\n- Re-staking is required.\n- Re-staking must be with the same or greater staking value according to the documentation.\n\nNever describe the 2X cap as a guaranteed profit."
+  },
+  {
+    id: "usdx-rules-spot-income",
+    keywords: ["spot income", "direct referral", "direct referral income", "20 percent", "referral first stake", "20% spot", "first time stake"],
+    category: "Affiliate System",
+    sources: ["USDX-SMART Documentation"],
+    text: "## Direct Referral / Spot Income\n\nThe published direct referral mechanism states 20% USDX Spot Income on a new direct user's first-time stake.\n\nExample: a direct user's first-time stake = $1,000 -> Sponsor Spot Income = 20% of $1,000 = $200.\n\nThis applies to the eligible amount of the direct user's first-time stake only."
+  },
+  {
+    id: "usdx-rules-gap",
+    keywords: ["gap commission", "gap", "top up commission", "re-stake commission", "restake gap", "top up gap"],
+    category: "Affiliate System",
+    sources: ["USDX-SMART Documentation"],
+    text: "## Gap Commission\n\nFor a re-stake/top-up by a direct referral, the documentation describes a gap mechanism:\n\nGap = New applicable stake - Previous applicable stake.\n\n- Previous stake $1,000, new re-stake $1,000 -> Gap $0 -> 20% Gap Commission = $0.\n- Previous stake $1,000, new re-stake $2,000 -> Gap $1,000 -> 20% Gap Commission = $200.\n\nDo not calculate commission on the entire re-stake amount when only the gap is applicable."
+  },
+  {
+    id: "usdx-rules-affiliate",
+    keywords: ["affiliate staking yield", "affiliate yield", "affiliate daily", "0.3 percent", "25 levels", "affiliate requirements", "affiliate active", "affiliate level"],
+    category: "Affiliate System",
+    sources: ["USDX-SMART Documentation"],
+    text: "## Affiliate Staking Yield\n\n- Affiliate staking is released in real time.\n- Affiliate staking daily yield is 0.3% for all ranks.\n- The user must remain active to receive affiliate staking yield.\n- The affiliate allocation system extends up to 25 levels.\n\nUX requirement: self and all directs active, minimum staking $100, monthly minimum direct new stake $100.\nSmart-X requirement: self and all directs active, minimum staking $500, monthly minimum direct new stake $500, unlocks 25 levels.\n\nAffiliate Daily Yield (0.3%) is not the same as the user's self-staking rank yield or the affiliate allocation amount."
+  },
+  {
+    id: "usdx-rules-affiliate-allocation",
+    keywords: ["affiliate allocation", "allocation percentages", "level allocation", "10 percent allocation", "50 percent", "40 percent", "30 percent allocation"],
+    category: "Affiliate System",
+    sources: ["USDX-SMART Documentation"],
+    text: "## Affiliate Allocation\n\nPublished affiliate allocation examples include:\n- UX: 10%, 10%, 10%, 10%, 10%, 2%.\n- Smart-X and higher structure: 50%, 40%, 30%, 20%, 5%.\n\nThe supplied USDX documentation shows the allocation percentages, but the extracted table does not clearly map every displayed percentage to an individual level. A precise level-by-level mapping should not be invented."
+  },
+  {
+    id: "usdx-rules-affiliate-example",
+    keywords: ["affiliate example", "affiliate calculation", "affiliate income example", "affiliate yield example", "daily affiliate"],
+    category: "Affiliate System",
+    sources: ["USDX-SMART Documentation"],
+    text: "## Affiliate Example\n\nFor a $1,000 stake, example allocations shown include 10% = $100, 50% = $500, 40% = $400, 30% = $300, 20% = $200, 5% = $50.\n\nFor the affiliate yield, the daily rate is 0.3%. Example: affiliate allocation = $100 -> 0.3% daily yield = $0.30/day.\n\nAlways distinguish Affiliate Allocation (amount allocated) from Affiliate Daily Yield (0.3%/day). They are not the same thing."
+  },
+  {
+    id: "usdx-rules-yield-packages",
+    keywords: ["yield staking", "yield staking packages", "basic package", "standard package", "premium", "seed", "angel", "treasurer", "venture capital", "yield staking bonus"],
+    category: "Staking",
+    sources: ["USDX-SMART Documentation"],
+    text: "## Yield Staking Packages\n\nThe project document lists these Yield Staking package categories: Basic, Standard, Premium, Seed, Angel, Treasurer, Venture Capital.\n\n| Package | Initial Stake | Yield Bonus |\n| --- | --- | ---: |\n| Basic | $5,000 - $9,999 | 5% |\n| Standard | $10,000 - $24,999 | 10% |\n| Premium | $25,000 - $49,999 | 14% |\n| Seed | $50,000 - $99,999 | 18% |\n| Angel | $100,000 - $499,999 | 22% |\n| Treasurer | $500,000 - $999,999 | 26% |\n| Venture Capital | $1,000,000+ | 30% |\n\nThe documentation states: \"Yield Staking Available For New Users Only And Can not Be Repurchased.\""
+  },
+  {
+    id: "usdx-rules-yield-returns",
+    keywords: ["yield bonus", "2x max returns", "yield staking returns", "yield bonus examples", "2x returns packages"],
+    category: "Staking",
+    sources: ["USDX-SMART Documentation"],
+    text: "## Yield Bonus and 2X Max Returns (Published Examples)\n\nPublished Yield Bonus ranges: Basic $250-$500, Standard $1,000-$2,500, Premium $3,500-$7,000, Seed $9,000-$18,000, Angel $22,000-$110,000, Treasurer $130,000-$260,000, Venture Capital $300,000+.\n\nPublished 2X max return examples: Basic $10,500-$21,000, Standard $22,000-$55,000, Premium $57,000-$114,000, Seed $118,000-$236,000, Angel $244,000-$1,220,000, Treasurer $1,260,000-$2,520,000, Venture Capital $2,600,000+.\n\nThese are published examples, not guaranteed outcomes."
+  },
+  {
+    id: "usdx-rules-apy",
+    keywords: ["fixed apy", "apy schedule", "fixed apy duration", "apy 12", "apy 24", "apy 36", "apy 48", "apy 60", "apy months"],
+    category: "Fixed APY",
+    sources: ["USDX-SMART Documentation"],
+    text: "## Fixed APY Staking\n\nSupported assets: DAI and USDX. Yield distribution: USDX only. Real-time tracking, flexible claiming, minimum entry $50 USD equivalent, maximum capacity unlimited, multiple stakes and re-staking, with compounding through repeated staking/re-staking.\n\n| Duration | APY |\n| --- | ---: |\n| 3 Months | 12% |\n| 6 Months | 24% |\n| 12 Months | 36% |\n| 36 Months | 48% |\n| 60 Months | 60% |\n\nDo not convert these APY figures into guaranteed profit unless the exact calculation methodology is provided."
+  },
+  {
+    id: "usdx-rules-intro-incentive",
+    keywords: ["introduction incentive", "5 percent bonus", "bonus apy", "apy holder bonus", "first stake bonus", "apy incentive"],
+    category: "Fixed APY",
+    sources: ["USDX-SMART Documentation"],
+    text: "## Introduction Incentive\n\nThe documentation states:\n- Bonus = 5% of staked value.\n- Eligibility = existing APY staking holders only.\n- Valid for first-time and one-time use.\n- Re-stake feature available for compounding."
+  },
+  {
+    id: "usdx-rules-monthly",
+    keywords: ["monthly section", "monthly percentage", "monthly figures", "monthly income"],
+    category: "Staking",
+    sources: ["USDX-SMART Documentation"],
+    text: "## Monthly Figure\n\nThe document displays 1%, 2%, 3%, 4%, 5% under a MONTHLY section. The supplied document shows 1%-5% under the monthly section, but the available documentation does not clearly specify the corresponding conditions. The AI should not create additional rules from these values."
+  },
+  {
+    id: "usdx-rules-withdrawal",
+    keywords: ["withdraw", "withdrawal fee", "minimum withdrawal", "insignificant", "no withdrawal fee", "withdrawal rule", "withdraw rules"],
+    category: "Project Rules",
+    sources: ["USDX-SMART Documentation"],
+    text: "## Withdrawal\n\nAccording to the project documentation:\n- Registration fee: no registration fee.\n- Minimum withdrawal: insignificant (no specific numerical amount given).\n- Withdrawal fee: no withdrawal fee.\n- Maximum cap: 2X.\n- Re-staking required after reaching the 2X cap.\n\nNote: no withdrawal fee does not mean there can never be blockchain/network transaction fees."
+  },
+  {
+    id: "usdx-rules-restaking",
+    keywords: ["re-stake", "restake", "re-staking rules", "restake live price", "inactive", "continue earning", "restaking after cap"],
+    category: "Staking",
+    sources: ["USDX-SMART Documentation"],
+    text: "## Re-Staking\n\nOnce the staking amount reaches its 2X cap:\n1. The earning cycle reaches its maximum.\n2. The user becomes inactive for continued earnings.\n3. The user must re-stake.\n4. Re-staking must satisfy the applicable staking requirement.\n5. USDX re-staking uses the USDX live price according to the documentation."
+  },
+  {
+    id: "usdx-rules-registration",
+    keywords: ["register", "registration", "sponsor", "referrer required", "no registration fee", "sign up", "without sponsor"],
+    category: "Project Rules",
+    sources: ["USDX-SMART Documentation"],
+    text: "## Registration\n\nAccording to the project documentation:\n- A new user must register with a Sponsor/Referrer.\n- Registration is required to access the USDX staking ecosystem.\n- Registration fee: no registration fee.\n\nCan a user stake without a sponsor? According to the published documentation, new users must register with a Sponsor/Referrer to access the staking ecosystem."
+  },
+  {
+    id: "usdx-rules-ecosystem",
+    keywords: ["ecosystem", "ecosystem components", "stable dex", "bridgex", "future dex", "insight x", "listing partnerships", "components list"],
+    category: "USDX Overview",
+    sources: ["USDX-SMART Documentation"],
+    text: "## USDX-SMART Ecosystem Components\n\nThe project document identifies these components: 1) Trigger Peg Technology, 2) USDX Stake / Re-Stake, 3) Fixed APY, 4) Stable DEX, 5) BridgeX, 6) Future DEX, 7) Insight X, 8) Listing Partnerships.\n\n- Stable DEX: intended to provide efficient trading with low slippage.\n- BridgeX: for cross-chain interoperability and growth.\n- Future DEX: intended for expanded trading revenue and hedging.\n- Insight X: decentralised prediction and data-driven governance.\n- Listing Partnerships: intended to support adoption and revenue through listing partners.\n\nThe document describes these as parts of a broader decentralised revenue ecosystem. Do not claim future components are already operational unless official current information confirms that. Do not invent specific liquidity, volume, listings, chains, or partners."
+  },
+  {
+    id: "usdx-rules-calculation",
+    keywords: ["calculate", "calculation", "daily income", "how much will", "calculator", "earn per day", "earn daily", "calculate yield"],
+    category: "2X Cap and Calculations",
+    sources: ["USDX-SMART Documentation"],
+    text: "## USDX Calculations\n\nTo calculate a result, the exact staking amount, rank/package, and applicable mechanism are needed. The published rates are:\n- Self-staking rank daily yields: 0.3%, 0.4%, 0.5%, 0.6%, 0.7%, 0.8%, 1.0% (by rank).\n- Direct referral Spot Income: 20% of a direct user's first-time stake.\n- Affiliate daily yield: 0.3%.\n- 2X cap: 200% of the applicable staking value.\n- Yield Bonus and Fixed APY as published in the tables.\n\nExamples: $1,000 x 0.3% = $3/day; $1,000 x 0.4% = $4/day; $1,000 x 1.0% = $10/day.\n\nStep 1: identify the staking amount. Step 2: identify the rank/package. Step 3: apply the published percentage. Step 4: apply the 2X cap where applicable.\n\nThese are theoretical calculations based on the published USDX Smart rate and should not be presented as guaranteed financial outcomes."
+  },
+  {
+    id: "usdx-rules-team-example",
+    keywords: ["team example", "team growth", "6 36 216", "46556", "team sizes", "theoretical team"],
+    category: "Affiliate System",
+    sources: ["USDX-SMART Documentation"],
+    text: "## Affiliate Team Example\n\nThe documentation gives a theoretical team-growth example based on a $1,000 stake and a Smart-X structure. Displayed team sizes include 6, 36, 216, 1,296, 7,776, 46,656, with corresponding total stake examples of $6,000, $36,000, $216,000, $1,296,000, $7,776,000, $46,656,000.\n\nThese are theoretical examples from the project document. Team sizes and income levels are not guaranteed or expected outcomes for any user."
+  },
+  {
+    id: "usdx-rules-quick-reference",
+    keywords: ["quick reference", "all values", "full rules", "project values", "summary values", "all yields"],
+    category: "USDX Overview",
+    sources: ["USDX-SMART Documentation"],
+    text: "## USDX-SMART Project Values (Quick Reference)\n\nSelf staking: min > $0, max unlimited, cap 2X/200%, re-stake required after 2X.\n\nSelf daily yield by rank: UX 0.3%, Smart-X 0.4%, Plus-X 0.5%, Pro-X 0.6%, Chief-X 0.7%, Royal-X 0.8%, Empire-X 1.0%.\n\nDirect referral: 20% Spot Income on first-time direct stake. Gap Commission applies to the gap on re-stake/top-up.\n\nAffiliate: daily yield 0.3%, up to 25 levels.\n\nYield Staking: Basic $5,000-$9,999 -> 5%; Standard $10,000-$24,999 -> 10%; Premium $25,000-$49,999 -> 14%; Seed $50,000-$99,999 -> 18%; Angel $100,000-$499,999 -> 22%; Treasurer $500,000-$999,999 -> 26%; Venture Capital $1,000,000+ -> 30%.\n\nFixed APY: 3 months 12%, 6 months 24%, 12 months 36%, 36 months 48%, 60 months 60%. Min entry $50 USD equivalent. Assets: DAI/USDX. Distribution: USDX.\n\nTheoretical calculations are not guaranteed outcomes."
   },
 ];
 
