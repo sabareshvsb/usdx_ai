@@ -59,7 +59,7 @@ const knowledgeBase: RawKnowledgeEntry[] = [
     keywords: ["staking", "stake", "how to stake", "returns", "apy", "earn", "requirements"],
     category: "Staking",
     sources: ["USDX Documentation", "USDX Knowledge Base"],
-    text: "## USDX Staking\n\nStaking lets you lock up USDX to earn yield. To begin, connect a supported wallet, acquire USDX, and deposit it into the staking pool.\n\n### Key points\n- Minimum holding period applies before rewards mature\n- Rewards accrue based on your staked balance and current rank\n- Higher ranks earn higher effective yields\n- You can monitor earned rewards in the dashboard\n\n**Note:** Specific rates, minimums and lock-up terms are defined in the current official USDX rules and may change. Always confirm against the live project rules before acting."
+    text: "## USDX Staking\n\nStaking lets you lock up USDX to earn yield. To begin, connect a supported wallet, acquire USDX, and deposit it into the staking pool.\n\n### Key points\n- Minimum holding period applies before rewards mature\n- Rewards accrue based on your staked balance and current rank\n- Higher ranks earn higher effective yields\n- You can monitor earned rewards in the dashboard"
   },
   {
     id: "compounding",
@@ -73,7 +73,7 @@ const knowledgeBase: RawKnowledgeEntry[] = [
     keywords: ["swap", "dai", "swap rules", "convert", "exchange"],
     category: "Swap Rules",
     sources: ["USDX Documentation", "Project Rules"],
-    text: "## USDX to DAI Swap\n\nThe minimum staking value should be of $1000 then you can swap USDX to DAI in Base app.\n\nThe USDX → DAI swap allows you to convert your USDX holdings into DAI. Swaps follow a defined set of rules.\n\n### Swap rules\n- Swaps may be subject to a minimum amount and a maximum per transaction\n- A fee may apply depending on the direction and prevailing pool conditions\n- Completed swaps settle on-chain and cannot be reversed\n- Supported pairs currently include USDX → DAI\n\n**Important:** Rates and liquidity are dynamic. The minimum staking rule above is the standing project rule; always review the official swap rules for the current terms before converting."
+    text: "## Swap Rules\n\nThe minimum staking value should be of $1000 then you can swap USDX to DAI in Base app.\n\nThe USDX → DAI swap allows you to convert your USDX holdings into DAI. Swaps follow a defined set of rules.\n\n### Swap rules\n- Swaps may be subject to a minimum amount and a maximum per transaction\n- A fee may apply depending on the direction and prevailing pool conditions\n- Completed swaps settle on-chain and cannot be reversed\n- Supported pairs currently include USDX → DAI"
   },
   {
     id: "ranks",
@@ -1550,14 +1550,14 @@ const knowledgeBase: RawKnowledgeEntry[] = [
     keywords: ["self stake", "self staking rules", "min self stake", "maximum self stake", "unlimited stake", "minimum staking value", "2x cap"],
     category: "Staking",
     sources: ["USDX-SMART Documentation"],
-    text: "## Self Staking\n\n- Minimum staking: greater than $0.\n- Maximum staking: unlimited, according to the documentation.\n- Maximum earning cap: 2X / 200% of staking value.\n- Re-staking is required once the 2X cap is reached.\n\nThe 2X cap for a $1,000 stake is $2,000. This is a theoretical example based on the published $1,000 example."
+    text: "## Self Staking\n\n- Minimum staking: greater than $0.\n- Maximum staking: unlimited, according to the documentation.\n- Maximum earning cap: 2X / 200% of staking value.\n- Re-staking is required once the 2X cap is reached.\n\nThe 2X cap for a $1,000 stake is $2,000."
   },
   {
     id: "usdx-rules-2x",
     keywords: ["2x cap", "two times cap", "200 percent", "cap meaning", "max return", "maximum return"],
     category: "2X Cap and Calculations",
     sources: ["USDX-SMART Documentation", "USDX Knowledge Base"],
-    text: "## The 2X Maximum Cap\n\nThe USDX staking system uses a stated 2X maximum cap: the maximum return is 200% of the applicable staking value. If the staking value is $1,000, the maximum return is $2,000; if $500, the cap is $1,000; if $2,000, the cap is $4,000.\n\nOnce the 2X cap is reached:\n- The user becomes inactive for the relevant earning mechanism.\n- Re-staking is required.\n- Re-staking must be with the same or greater staking value according to the documentation.\n\nNever describe the 2X cap as a guaranteed profit."
+    text: "## The 2X Maximum Cap\n\nThe USDX staking system uses a stated 2X maximum cap: the maximum return is 200% of the applicable staking value. If the staking value is $1,000, the maximum return is $2,000; if $500, the cap is $1,000; if $2,000, the cap is $4,000.\n\nOnce the 2X cap is reached:\n- The user becomes inactive for the relevant earning mechanism.\n- Re-staking is required.\n- Re-staking must be with the same or greater staking value according to the documentation."
   },
   {
     id: "usdx-rules-spot-income",
@@ -1606,14 +1606,14 @@ const knowledgeBase: RawKnowledgeEntry[] = [
     keywords: ["yield bonus", "2x max returns", "yield staking returns", "yield bonus examples", "2x returns packages"],
     category: "Staking",
     sources: ["USDX-SMART Documentation"],
-    text: "## Yield Bonus and 2X Max Returns (Published Examples)\n\nPublished Yield Bonus ranges: Basic $250-$500, Standard $1,000-$2,500, Premium $3,500-$7,000, Seed $9,000-$18,000, Angel $22,000-$110,000, Treasurer $130,000-$260,000, Venture Capital $300,000+.\n\nPublished 2X max return examples: Basic $10,500-$21,000, Standard $22,000-$55,000, Premium $57,000-$114,000, Seed $118,000-$236,000, Angel $244,000-$1,220,000, Treasurer $1,260,000-$2,520,000, Venture Capital $2,600,000+.\n\nThese are published examples, not guaranteed outcomes."
+    text: "## Yield Bonus and 2X Max Returns (Published Examples)\n\nPublished Yield Bonus ranges: Basic $250-$500, Standard $1,000-$2,500, Premium $3,500-$7,000, Seed $9,000-$18,000, Angel $22,000-$110,000, Treasurer $130,000-$260,000, Venture Capital $300,000+.\n\nPublished 2X max return examples: Basic $10,500-$21,000, Standard $22,000-$55,000, Premium $57,000-$114,000, Seed $118,000-$236,000, Angel $244,000-$1,220,000, Treasurer $1,260,000-$2,520,000, Venture Capital $2,600,000+."
   },
   {
     id: "usdx-rules-apy",
     keywords: ["fixed apy", "apy schedule", "fixed apy duration", "apy 12", "apy 24", "apy 36", "apy 48", "apy 60", "apy months"],
     category: "Fixed APY",
     sources: ["USDX-SMART Documentation"],
-    text: "## Fixed APY Staking\n\nSupported assets: DAI and USDX. Yield distribution: USDX only. Real-time tracking, flexible claiming, minimum entry $50 USD equivalent, maximum capacity unlimited, multiple stakes and re-staking, with compounding through repeated staking/re-staking.\n\n| Duration | APY |\n| --- | ---: |\n| 3 Months | 12% |\n| 6 Months | 24% |\n| 12 Months | 36% |\n| 36 Months | 48% |\n| 60 Months | 60% |\n\nDo not convert these APY figures into guaranteed profit unless the exact calculation methodology is provided."
+    text: "## Fixed APY Staking\n\nSupported assets: DAI and USDX. Yield distribution: USDX only. Real-time tracking, flexible claiming, minimum entry $50 USD equivalent, maximum capacity unlimited, multiple stakes and re-staking, with compounding through repeated staking/re-staking.\n\n| Duration | APY |\n| --- | ---: |\n| 3 Months | 12% |\n| 6 Months | 24% |\n| 12 Months | 36% |\n| 36 Months | 48% |\n| 60 Months | 60% |"
   },
   {
     id: "usdx-rules-intro-incentive",
@@ -1662,21 +1662,21 @@ const knowledgeBase: RawKnowledgeEntry[] = [
     keywords: ["calculate", "calculation", "daily income", "how much will", "calculator", "earn per day", "earn daily", "calculate yield"],
     category: "2X Cap and Calculations",
     sources: ["USDX-SMART Documentation"],
-    text: "## USDX Calculations\n\nTo calculate a result, the exact staking amount, rank/package, and applicable mechanism are needed. The published rates are:\n- Self-staking rank daily yields: 0.3%, 0.4%, 0.5%, 0.6%, 0.7%, 0.8%, 1.0% (by rank).\n- Direct referral Spot Income: 20% of a direct user's first-time stake.\n- Affiliate daily yield: 0.3%.\n- 2X cap: 200% of the applicable staking value.\n- Yield Bonus and Fixed APY as published in the tables.\n\nExamples: $1,000 x 0.3% = $3/day; $1,000 x 0.4% = $4/day; $1,000 x 1.0% = $10/day.\n\nStep 1: identify the staking amount. Step 2: identify the rank/package. Step 3: apply the published percentage. Step 4: apply the 2X cap where applicable.\n\nThese are theoretical calculations based on the published USDX Smart rate and should not be presented as guaranteed financial outcomes."
+    text: "## USDX Calculations\n\nTo calculate a result, the exact staking amount, rank/package, and applicable mechanism are needed. The published rates are:\n- Self-staking rank daily yields: 0.3%, 0.4%, 0.5%, 0.6%, 0.7%, 0.8%, 1.0% (by rank).\n- Direct referral Spot Income: 20% of a direct user's first-time stake.\n- Affiliate daily yield: 0.3%.\n- 2X cap: 200% of the applicable staking value.\n- Yield Bonus and Fixed APY as published in the tables.\n\nExamples: $1,000 x 0.3% = $3/day; $1,000 x 0.4% = $4/day; $1,000 x 1.0% = $10/day.\n\nStep 1: identify the staking amount. Step 2: identify the rank/package. Step 3: apply the published percentage. Step 4: apply the 2X cap where applicable."
   },
   {
     id: "usdx-rules-team-example",
-    keywords: ["team example", "team growth", "6 36 216", "46556", "team sizes", "theoretical team"],
+    keywords: ["team example", "team growth", "6 36 216", "46556", "team sizes", "affiliate team"],
     category: "Affiliate System",
     sources: ["USDX-SMART Documentation"],
-    text: "## Affiliate Team Example\n\nThe documentation gives a theoretical team-growth example based on a $1,000 stake and a Smart-X structure. Displayed team sizes include 6, 36, 216, 1,296, 7,776, 46,656, with corresponding total stake examples of $6,000, $36,000, $216,000, $1,296,000, $7,776,000, $46,656,000.\n\nThese are theoretical examples from the project document. Team sizes and income levels are not guaranteed or expected outcomes for any user."
+    text: "## Affiliate Team Example\n\nThe documentation gives a team-growth example based on a $1,000 stake and a Smart-X structure. Displayed team sizes include 6, 36, 216, 1,296, 7,776, 46,656, with corresponding total stake examples of $6,000, $36,000, $216,000, $1,296,000, $7,776,000, $46,656,000."
   },
   {
     id: "usdx-rules-quick-reference",
     keywords: ["quick reference", "all values", "full rules", "project values", "summary values", "all yields"],
     category: "USDX Overview",
     sources: ["USDX-SMART Documentation"],
-    text: "## USDX-SMART Project Values (Quick Reference)\n\nSelf staking: min > $0, max unlimited, cap 2X/200%, re-stake required after 2X.\n\nSelf daily yield by rank: UX 0.3%, Smart-X 0.4%, Plus-X 0.5%, Pro-X 0.6%, Chief-X 0.7%, Royal-X 0.8%, Empire-X 1.0%.\n\nDirect referral: 20% Spot Income on first-time direct stake. Gap Commission applies to the gap on re-stake/top-up.\n\nAffiliate: daily yield 0.3%, up to 25 levels.\n\nYield Staking: Basic $5,000-$9,999 -> 5%; Standard $10,000-$24,999 -> 10%; Premium $25,000-$49,999 -> 14%; Seed $50,000-$99,999 -> 18%; Angel $100,000-$499,999 -> 22%; Treasurer $500,000-$999,999 -> 26%; Venture Capital $1,000,000+ -> 30%.\n\nFixed APY: 3 months 12%, 6 months 24%, 12 months 36%, 36 months 48%, 60 months 60%. Min entry $50 USD equivalent. Assets: DAI/USDX. Distribution: USDX.\n\nTheoretical calculations are not guaranteed outcomes."
+    text: "## USDX-SMART Project Values (Quick Reference)\n\nSelf staking: min > $0, max unlimited, cap 2X/200%, re-stake required after 2X.\n\nSelf daily yield by rank: UX 0.3%, Smart-X 0.4%, Plus-X 0.5%, Pro-X 0.6%, Chief-X 0.7%, Royal-X 0.8%, Empire-X 1.0%.\n\nDirect referral: 20% Spot Income on first-time direct stake. Gap Commission applies to the gap on re-stake/top-up.\n\nAffiliate: daily yield 0.3%, up to 25 levels.\n\nYield Staking: Basic $5,000-$9,999 -> 5%; Standard $10,000-$24,999 -> 10%; Premium $25,000-$49,999 -> 14%; Seed $50,000-$99,999 -> 18%; Angel $100,000-$499,999 -> 22%; Treasurer $500,000-$999,999 -> 26%; Venture Capital $1,000,000+ -> 30%.\n\nFixed APY: 3 months 12%, 6 months 24%, 12 months 36%, 36 months 48%, 60 months 60%. Min entry $50 USD equivalent. Assets: DAI/USDX. Distribution: USDX."
   },
 ];
 
