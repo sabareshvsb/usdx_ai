@@ -14,6 +14,7 @@ import {
   normalizeLang,
   FALLBACK_TEXT,
   FALLBACK_UNKNOWN,
+  FALLBACK_BUSY,
   type LangCode,
 } from "@/lib/translations";
 
@@ -127,7 +128,7 @@ export async function POST(request: NextRequest) {
     unknown = fallsBackToKb.unknown;
   } else {
     const matches = retrieveQa(question, 8);
-    const qaContext = qaMatchesToContext(matches, 16000);
+    const qaContext = qaMatchesToContext(matches, 5000);
     const priceContext = hasPriceData ? await buildLivePriceContext() : "";
     const kbContext = [
       priceContext,
@@ -151,11 +152,13 @@ export async function POST(request: NextRequest) {
 
     if (aiText) {
       content = aiText;
-      unknown = matches.length === 0 && fallsBackToKb.unknown;
+      unknown = false;
+    } else if (language === "en" && !fallsBackToKb.unknown) {
+      content = fallsBackToKb.text;
+      unknown = false;
     } else {
-      content =
-        language === "en" ? fallsBackToKb.text : FALLBACK_UNKNOWN[language];
-      unknown = fallsBackToKb.unknown;
+      content = FALLBACK_BUSY[language];
+      unknown = true;
     }
   }
 
@@ -244,7 +247,7 @@ async function callAiWithFallback(
     {
       label: "Groq",
       baseUrl: process.env.GROQ_BASE_URL ?? "https://api.groq.com/openai/v1",
-      model: process.env.GROQ_MODEL ?? "llama-3.3-70b-versatile",
+      model: process.env.GROQ_MODEL ?? "openai/gpt-oss-120b",
       apiKey: process.env.GROQ_API_KEY ?? "",
     },
   ];
