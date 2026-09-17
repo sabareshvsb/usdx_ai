@@ -16,13 +16,13 @@ const scrollToId = (id: string) => {
   if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
 };
 
-const TAGLINES = [
-  "The DeFi Engine That Pays You to Stay",
-  "Trigger Peg Technology",
-  "Sustainability",
-  "Strong Community",
-  "Smart",
-  "Future Of Currencies",
+const WELCOME_PHRASES = [
+  "USDX-SMART AI WELCOMES YOU",
+  "USDX-SMART AI உங்களை வரவேற்கிறது",
+  "USDX-SMART AI ನಿಮಗೆ ಸ್ವಾಗತ ಕೋರುತ್ತದೆ.",
+  "USDX-SMART AI आपका स्वागत करता है।",
+  "USDX-SMART AI మీకు స్వాగతం పలుకుతోంది.",
+  "USDX-SMART AI നിങ്ങളെ സ്വാഗതം ചെയ്യുന്നു.",
 ];
 
 export default function HeroSection() {
@@ -82,9 +82,11 @@ export default function HeroSection() {
             <h1 className="mt-5 text-3xl font-extrabold leading-tight tracking-tight text-text-primary sm:text-5xl">
               <TextReveal text={TOKEN.name} duration={3000} />
               <VerticalTextCarousel
-                phrases={TAGLINES}
+                phrases={WELCOME_PHRASES}
+                interval={4000}
+                reveal={1100}
                 className="mt-1"
-                textClassName="hero-title-accent block text-2xl font-extrabold tracking-tight sm:text-4xl"
+                textClassName="hero-title-accent block whitespace-nowrap font-extrabold tracking-tight text-[clamp(0.6rem,2.5vw,1.3rem)]"
               />
             </h1>
           </Reveal>

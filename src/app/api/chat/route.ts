@@ -7,7 +7,6 @@ import {
 import {
   retrieveKnowledge,
   sourcesCatalog,
-  SWAP_RULES_ANSWER,
 } from "@/lib/knowledge";
 import { fetchDexScreenerData } from "@/lib/dexscreener";
 import {
@@ -15,6 +14,7 @@ import {
   FALLBACK_TEXT,
   FALLBACK_UNKNOWN,
   FALLBACK_BUSY,
+  SWAP_RULES,
   type LangCode,
 } from "@/lib/translations";
 
@@ -105,7 +105,7 @@ export async function POST(request: NextRequest) {
 
   if (isSwapRulesQuestion(question)) {
     return NextResponse.json({
-      content: SWAP_RULES_ANSWER,
+      content: SWAP_RULES[language],
       sources: swapRulesSources(),
       unknown: false,
     });
@@ -121,10 +121,9 @@ export async function POST(request: NextRequest) {
   const hasPriceData = isPriceQuery(question);
 
   if (provider === "mock" || !hasKey) {
-    content =
-      language === "en"
-        ? fallsBackToKb.text
-        : FALLBACK_UNKNOWN[language];
+    content = fallsBackToKb.unknown
+      ? FALLBACK_UNKNOWN[language]
+      : fallsBackToKb.text;
     unknown = fallsBackToKb.unknown;
   } else {
     const matches = retrieveQa(question, 8);
@@ -153,7 +152,7 @@ export async function POST(request: NextRequest) {
     if (aiText) {
       content = aiText;
       unknown = false;
-    } else if (language === "en" && !fallsBackToKb.unknown) {
+    } else if (!fallsBackToKb.unknown) {
       content = fallsBackToKb.text;
       unknown = false;
     } else {

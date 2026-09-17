@@ -2,23 +2,27 @@
 
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
+import TextReveal from "./TextReveal";
 
 interface VerticalTextCarouselProps {
   phrases: string[];
   interval?: number;
   className?: string;
   textClassName?: string;
+  reveal?: number;
 }
 
 /**
  * Auto-advancing vertical text carousel. Slides roll upward on a smooth
  * cubic-bezier curve. Pauses entirely when the user prefers reduced motion.
+ * When `reveal` is set, each phrase types itself in (in ms) as it becomes active.
  */
 export default function VerticalTextCarousel({
   phrases,
   interval = 3000,
   className = "",
   textClassName = "",
+  reveal,
 }: VerticalTextCarouselProps) {
   const [index, setIndex] = useState(0);
   const [height, setHeight] = useState(0);
@@ -84,11 +88,26 @@ export default function VerticalTextCarousel({
           transition: animate ? "transform 0.55s cubic-bezier(0.16, 1, 0.3, 1)" : "none",
         }}
       >
-        {slides.map((phrase, i) => (
-          <div key={`${phrase}-${i}`} className={textClassName} aria-hidden={i === phrases.length}>
-            {phrase}
-          </div>
-        ))}
+        {slides.map((phrase, i) => {
+          const isActive = i === index && (reveal ?? 0) > 0;
+          return (
+            <div
+              key={`${phrase}-${i}`}
+              className={textClassName}
+              aria-hidden={i === phrases.length}
+            >
+              {isActive ? (
+                <TextReveal
+                  key={`reveal-${index}`}
+                  text={phrase}
+                  duration={reveal}
+                />
+              ) : (
+                phrase
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
