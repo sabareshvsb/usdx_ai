@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Sidebar from "@/components/layout/Sidebar";
 import TopBar from "@/components/layout/TopBar";
 import MobileNav from "@/components/layout/MobileNav";
+import Footer from "@/components/layout/Footer";
 import USDXOverviewCard from "@/components/dashboard/USDXOverviewCard";
 import AIAssistantPanel from "@/components/dashboard/AIAssistantPanel";
 import UpdatesPanel from "@/components/dashboard/UpdatesPanel";
@@ -103,6 +104,7 @@ export default function DashboardPage() {
             <ActivityTable />
           </div>
         </main>
+        <Footer />
       </div>
       <MobileNav />
     </div>
